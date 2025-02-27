@@ -15,7 +15,7 @@ public class NeoForge {
         //config
         ModLoadingContext.get().registerExtensionPoint(
                 IConfigScreenFactory.class,
-                () -> (client, parent) -> ModInfoScreen.getScreen(parent, Constants.MOD_ID)
+                () -> (client, parent) -> ModInfoScreen.getScreen(parent, Constants.MOD_ID, null, null, null, null)
         );
 
         Constants.LOG.info("Init done");
