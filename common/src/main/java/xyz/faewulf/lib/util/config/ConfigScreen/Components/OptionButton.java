@@ -26,7 +26,7 @@ public class OptionButton extends Button {
     private int scrollOffset;
     private boolean reverse = false;
     private int effectCooldown = 0;
-    private String MOD_ID;
+    private final String MOD_ID;
 
     public OptionButton(String MOD_ID, int x, int y, int width, int height, Component message, Component tooltip, OnPress onPress, ConfigLoaderFromAnnotation.EntryInfo entryInfo) {
         super(x, y, width, height, message, onPress, DEFAULT_NARRATION);

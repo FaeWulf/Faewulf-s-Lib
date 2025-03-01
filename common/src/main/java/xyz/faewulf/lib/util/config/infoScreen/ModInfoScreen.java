@@ -12,6 +12,7 @@ import net.minecraft.client.gui.components.SpriteIconButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
+import net.minecraft.client.gui.layouts.Layout;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderType;
@@ -48,7 +49,7 @@ public class ModInfoScreen extends Screen {
     private int tilesY;
 
     //logo
-    private final float logo_offset_Y = 0.5f;
+    private final float logo_offset_Y = 20f;
 
     // Icon
     private final ResourceLocation ICON_DISCORD;
@@ -62,14 +63,14 @@ public class ModInfoScreen extends Screen {
     private String URL_DISCORD = "https://faewulf.xyz/discord";
 
     //comps
-    private final HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this, 150, 100);
+    private final HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this, 100, 60);
     private GridLayout contentLayout;
     private GridLayout footerLayout;
     private Button settingButton;
 
     private float time = 0.0f;  // Time variable to track animation
 
-    protected ModInfoScreen(Screen parent, String MOD_ID, @Nullable String discord, @Nullable String website, @Nullable String donate, @Nullable String sourcecode) {
+    protected ModInfoScreen(Screen parent, String MOD_ID) {
         super(Component.literal("Info"));
         this.parent = parent;
         client = Minecraft.getInstance();
@@ -87,15 +88,17 @@ public class ModInfoScreen extends Screen {
         ICON_DISCORD = ResourceLocation.tryBuild(MOD_ID, "icon/discord");
         ICON_KOFI = ResourceLocation.tryBuild(MOD_ID, "icon/kofi");
         ICON_GITHUB = ResourceLocation.tryBuild(MOD_ID, "icon/github");
+    }
 
+    public static ModInfoScreen getScreen(Screen parent, String MOD_ID) {
+        return new ModInfoScreen(parent, MOD_ID);
+    }
+
+    public void setUrls(@Nullable String discord, @Nullable String website, @Nullable String donate, @Nullable String sourcecode) {
         if (discord != null) URL_DISCORD = discord;
         if (sourcecode != null) URL_GITHUB = sourcecode;
         if (website != null) URL_WEBSITE = website;
         if (donate != null) URL_DONATE = donate;
-    }
-
-    public static Screen getScreen(Screen parent, String MOD_ID, @Nullable String discord, @Nullable String website, @Nullable String donate, @Nullable String sourcecode) {
-        return new ModInfoScreen(parent, MOD_ID, discord, website, donate, sourcecode);
     }
 
     @Override
@@ -190,8 +193,6 @@ public class ModInfoScreen extends Screen {
         rowHelperFooterLayout.addChild(iconButton, 1);
 
         //add comp to screen renderer
-        //buttonLayout.visitWidgets(this::addRenderableWidget);
-        //infoLayout.visitWidgets(this::addRenderableWidget);
 
         this.layout.addToContents(contentLayout);
         this.layout.addToFooter(footerLayout);
@@ -238,7 +239,7 @@ public class ModInfoScreen extends Screen {
 
     private void drawLightRays(GuiGraphics guiGraphics) {
         int centerX = this.width / 2;
-        int centerY = (int) (this.height * this.logo_offset_Y / 2);
+        int centerY = (int) ((this.layout.getHeaderHeight() + logo_offset_Y) / 2);
         int size = 128;  // Size of the light ray texture
 
         float rotationAngle = time * 20.0f;
@@ -277,7 +278,7 @@ public class ModInfoScreen extends Screen {
     private void drawWobblingImage(GuiGraphics guiGraphics) {
         int imageSize = 64;  // Size of the image
         int centerX = this.width / 2;
-        int centerY = (int) ((this.height * logo_offset_Y) / 2);
+        int centerY = (int) ((this.layout.getHeaderHeight() + logo_offset_Y) / 2);
 
         // Wobble effect: Use sine wave to make the image wobble up and down
         float wobbleOffsetY = (float) Math.sin(time) * 5.0f;  // 10-pixel wobble effect

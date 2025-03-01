@@ -11,6 +11,8 @@ public class CommonClass {
         if (Services.PLATFORM.isDevelopmentEnvironment() && Services.PLATFORM.isClientSide())
             SharedConstants.IS_RUNNING_IN_IDE = true;
 
+        Constants.LOG.info("Initializing...");
         Config.init();
+        Constants.LOG.info("Hello from Faewulf with <3");
     }
 }

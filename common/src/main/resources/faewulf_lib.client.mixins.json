@@ -3,7 +3,6 @@
   "package": "xyz.faewulf.lib.mixinClient",
   "compatibilityLevel": "JAVA_18",
   "refmap": "${mod_id}.refmap.json",
-  "mixins": [],
   "injectors": {
     "defaultRequire": 1
   },

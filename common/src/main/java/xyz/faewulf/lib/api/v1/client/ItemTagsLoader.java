@@ -16,7 +16,7 @@ public class ItemTagsLoader {
      * </p>
      *
      * <h3>Example Json tag file:</h3>
-     * - Register for "backpack/item"
+     * - Register for {@code backpack/item}
      * <pre>{@code
      * path: assets/client_backpack/backpack/item/example.json
      *   {

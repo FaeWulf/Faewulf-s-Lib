@@ -11,6 +11,6 @@ import xyz.faewulf.lib.util.config.infoScreen.ModInfoScreen;
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> ModInfoScreen.getScreen(parent, Constants.MOD_ID, null, null, null, null);
+        return parent -> ModInfoScreen.getScreen(parent, Constants.MOD_ID);
     }
 }

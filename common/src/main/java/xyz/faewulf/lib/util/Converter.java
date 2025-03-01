@@ -11,36 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class Converter {
 
-    /**
-     * Retrieves the {@link Enchantment} holder from the registry in the given world.
-     *
-     * @param world   The {@link Level} instance from which to access the enchantment registry.
-     * @param enchant The {@link ResourceKey} representing the enchantment to retrieve.
-     * @return A {@link Holder} containing the requested enchantment.
-     * @throws IllegalStateException if the enchantment is not found in the registry.
-     */
-    public static Holder<Enchantment> getEnchant(Level world, ResourceKey<Enchantment> enchant) {
-        HolderGetter<Enchantment> registryEntryLookup = world.registryAccess()
-                .lookupOrThrow(Registries.ENCHANTMENT);
-
-        return registryEntryLookup.getOrThrow(enchant);
-    }
-
-    /**
-     * Retrieves the {@link Enchantment} holder from the registry in the given world.
-     *
-     * @param world     The {@link Level} instance from which to access the enchantment registry.
-     * @param namespace The namespace of the enchantment.
-     * @param path      enchantment path in data.
-     * @return A {@link Holder} containing the requested enchantment.
-     * @throws IllegalStateException if the enchantment is not found in the registry.
-     */
-    public static Holder<Enchantment> getEnchant(Level world, String namespace, String path) {
-        return world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
-                .get(ResourceLocation.fromNamespaceAndPath(namespace, path))
-                .orElse(null);
-
-    }
 
     /**
      * Returns the music note corresponding to the given note index.

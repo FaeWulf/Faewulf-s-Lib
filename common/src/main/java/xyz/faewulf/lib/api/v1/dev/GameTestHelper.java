@@ -4,7 +4,7 @@ import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.gameTests.registerGameTests;
 import xyz.faewulf.lib.util.gameTests.entry.general.initTest;
 
-public class GameTest {
+public class GameTestHelper {
 
     public static final String DEFAULT = Constants.MOD_ID + ":default";
     public static final String UNDERWATER = Constants.MOD_ID + ":underwater";

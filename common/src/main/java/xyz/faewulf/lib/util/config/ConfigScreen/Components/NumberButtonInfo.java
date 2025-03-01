@@ -18,7 +18,7 @@ public class NumberButtonInfo extends StringWidget {
 
     private final ConfigLoaderFromAnnotation.EntryInfo entryInfo;
     private final Component initMessage;
-    private String MOD_ID;
+    private final String MOD_ID;
 
     public NumberButtonInfo(String MOD_ID, int width, int height, Component message, Font font, ConfigLoaderFromAnnotation.EntryInfo info) {
         super(width, height, message, font);

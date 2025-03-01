@@ -3,12 +3,15 @@ package xyz.faewulf.lib.util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import xyz.faewulf.lib.registry.ItemTagRegistry;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Compare {
 
@@ -16,13 +19,12 @@ public class Compare {
      * Checks if the given {@link Block} has the specified tag.
      *
      * @param block   The {@link Block} to check.
-     * @param tagName The name of the tag to look for.
+     * @param tagName The name of the tag to look for.</br>
+     *                Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isHasTag(Block block, String tagName) {
         // Create a TagKey for the block using the tagName.
-
-
         ResourceLocation path = ResourceLocation.tryParse(tagName);
 
         if (path == null)
@@ -40,17 +42,35 @@ public class Compare {
                     .orElseThrow()
                     .is(blockTag);
 
-        } catch (IllegalStateException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
 
     }
 
     /**
+     * Checks if the given {@link Entity} has the specified tag.
+     *
+     * @param entity  The {@link Entity} to check.
+     * @param tagName The name of the tag to look for.</br>
+     *                Format {@code namespace:item_id}
+     * @return {@code true} if the item has the tag, {@code false} otherwise.
+     */
+    public static boolean isHasTag(Entity entity, String tagName) {
+        ResourceLocation path = ResourceLocation.tryParse(tagName);
+
+        if (path == null)
+            return false;
+
+        return EntityType.getKey(entity.getType()).toString().equals(tagName);
+    }
+
+    /**
      * Checks if the given {@link Item} has the specified tag.
      *
      * @param item    The {@link Item} to check.
-     * @param tagName The name of the tag to look for.
+     * @param tagName The name of the tag to look for.</br>
+     *                Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isHasTag(Item item, String tagName) {
@@ -73,7 +93,7 @@ public class Compare {
                     )
                     .orElseThrow()
                     .is(itemTag);
-        } catch (IllegalStateException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
 
@@ -87,7 +107,9 @@ public class Compare {
      * </p>
      *
      * @param item    The item to check.
-     * @param tagName The name of the tag to look for. Format should be: "path:tag". Example: backpack/item:glow
+     * @param tagName The name of the tag to look for.
+     *                Format should be: {@code path:tag}".</br>
+     *                Example: {@code backpack/item:glow}
      * @return {@code true} if the item has the specified tag, {@code false} otherwise.
      */
     public static boolean isHasTagClient(Item item, String tagName) {
@@ -103,7 +125,8 @@ public class Compare {
      * Checks the given {@link Block}'s name.
      *
      * @param name  The name of the block to compare with.
-     * @param block The {@link Block} to check.
+     * @param block The {@link Block} to check.</br>
+     *              Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isBlock(String name, Block block) {
@@ -120,7 +143,8 @@ public class Compare {
      * Checks the given {@link Item}'s name.
      *
      * @param name The name of the block to compare with.
-     * @param item The {@link Item} to check.
+     * @param item The {@link Item} to check.</br>
+     *             Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isItem(String name, Item item) {

@@ -1,13 +1,12 @@
 package xyz.faewulf.lib.api.v1.config;
 
 import net.minecraft.client.gui.screens.Screen;
-import org.jetbrains.annotations.Nullable;
 import xyz.faewulf.lib.util.config.Config;
 import xyz.faewulf.lib.util.config.ModConfigs;
 import xyz.faewulf.lib.util.config.Entry;
 import xyz.faewulf.lib.util.config.infoScreen.ModInfoScreen;
 
-public class configLoader {
+public class ConfigHelper {
 
     /**
      * Registers a config handler for the specified configuration class.
@@ -30,7 +29,7 @@ public class configLoader {
      * @param MOD_ID The unique identifier of the mod.
      * @return The configuration {@link Screen} for the given mod.
      */
-    public static Screen getConfigScreen(Screen parent, String MOD_ID, @Nullable String discord, @Nullable String website, @Nullable String donate, @Nullable String sourcecode) {
-        return ModInfoScreen.getScreen(parent, MOD_ID, discord, website, donate, sourcecode);
+    public static Screen getConfigScreen(Screen parent, String MOD_ID) {
+        return ModInfoScreen.getScreen(parent, MOD_ID);
     }
 }
