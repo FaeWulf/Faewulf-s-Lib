@@ -32,8 +32,6 @@ public class EnchantHelper {
         } catch (IllegalStateException illegalStateException) {
             return null;
         }
-
-
     }
 
     /**
@@ -47,12 +45,14 @@ public class EnchantHelper {
      */
     @Nullable
     public static Holder<Enchantment> getEnchant(Level level, String namespace, String path) {
-        return level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
-                .get(ResourceLocation.fromNamespaceAndPath(namespace, path))
-                .orElse(null);
-
+        try {
+            return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT)
+                    .getHolder(ResourceLocation.fromNamespaceAndPath(namespace, path))
+                    .orElse(null);
+        } catch (IllegalStateException illegalStateException) {
+            return null;
+        }
     }
-
 
     /**
      * Retrieves the {@link Enchantment} holder from the registry in the given world.

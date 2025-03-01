@@ -77,7 +77,6 @@ public class rainITem {
         // Draw the texture
 
         guiGraphics.blit(
-                RenderType::guiTextured,
                 RAIN_ITEM,
                 0,  // X position on the screen
                 0,  // Y position on the screen

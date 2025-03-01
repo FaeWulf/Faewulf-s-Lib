@@ -423,7 +423,6 @@ public class ConfigScreen extends Screen {
 
                 //Draw the tile from the atlas
                 guiGraphics.blit(
-                        RenderType::guiOpaqueTexturedBackground,
                         ATLAS_TEXTURE,
                         x * TILE_SIZE,  // X position on the screen
                         y * TILE_SIZE,  // Y position on the screen

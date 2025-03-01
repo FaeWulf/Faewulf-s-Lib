@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.Compare;
 
@@ -87,8 +88,11 @@ public class ItemTagRegistry {
                 ResourceLocation itemResource = ResourceLocation.tryParse(itemString);
 
                 // Add to the list
-                if (itemResource != null)
-                    BuiltInRegistries.ITEM.get(itemResource).ifPresent(itemReference -> itemList.add(itemReference.value()));
+                if (itemResource != null) {
+                    Item item = BuiltInRegistries.ITEM.get(itemResource);
+                    if (item != Items.AIR)
+                        itemList.add(item);
+                }
             }
         }
 
