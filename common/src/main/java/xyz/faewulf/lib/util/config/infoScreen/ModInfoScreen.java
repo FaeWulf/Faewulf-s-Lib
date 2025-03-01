@@ -3,19 +3,16 @@ package xyz.faewulf.lib.util.config.infoScreen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.SpriteIconButton;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
-import net.minecraft.client.gui.layouts.Layout;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -85,9 +82,9 @@ public class ModInfoScreen extends Screen {
         ATLAS_TEXTURE = ResourceLocation.tryBuild(MOD_ID, "textures/gui/atlas_background.png");
 
         // Icon
-        ICON_DISCORD = ResourceLocation.tryBuild(MOD_ID, "icon/discord");
-        ICON_KOFI = ResourceLocation.tryBuild(MOD_ID, "icon/kofi");
-        ICON_GITHUB = ResourceLocation.tryBuild(MOD_ID, "icon/github");
+        ICON_DISCORD = ResourceLocation.tryBuild(MOD_ID, "textures/gui/sprites/icon/discord.png");
+        ICON_KOFI = ResourceLocation.tryBuild(MOD_ID, "textures/gui/sprites/icon/kofi.png");
+        ICON_GITHUB = ResourceLocation.tryBuild(MOD_ID, "textures/gui/sprites/icon/github.png");
     }
 
     public static ModInfoScreen getScreen(Screen parent, String MOD_ID) {
@@ -146,14 +143,9 @@ public class ModInfoScreen extends Screen {
                         .build()
         );
 
-        var iconButton = SpriteIconButton.builder(
-                        Component.literal("Kofi").withStyle(ChatFormatting.RED),
-                        button -> this.openWebLink(URL_DONATE),
-                        true
-                )
-                .size(20, 20)
-                .sprite(ICON_KOFI, 20, 20)
-                .build();
+
+        var iconButton = new ImageButton(20, 20, 20, 20, 0, 0, 20, ICON_KOFI, 32, 64, button -> this.openWebLink(URL_DONATE));
+
         iconButton.setTooltip(Tooltip.create(Component.translatable(MOD_ID + ".info.kofi.tooltip")));
 
         rowHelperFooterLayout.addChild(iconButton, 1);
@@ -166,27 +158,14 @@ public class ModInfoScreen extends Screen {
                 , 1
         );
 
-        iconButton = SpriteIconButton.builder(
-                        Component.literal("Discord").withStyle(ChatFormatting.BLUE),
-                        button -> this.openWebLink(URL_DISCORD),
-                        true
-                )
-                .size(20, 20)
-                .sprite(ICON_DISCORD, 16, 16)
-                .build();
+
+        iconButton = new ImageButton(20, 20, 20, 20, 0, 0, 20, ICON_DISCORD, 32, 64, button -> this.openWebLink(URL_DISCORD));
 
         iconButton.setTooltip(Tooltip.create(Component.translatable(MOD_ID + ".info.discord.tooltip")));
 
         rowHelperFooterLayout.addChild(iconButton, 1);
 
-        iconButton = SpriteIconButton.builder(
-                        Component.literal("Github"),
-                        button -> this.openWebLink(URL_GITHUB),
-                        true
-                )
-                .size(20, 20)
-                .sprite(ICON_GITHUB, 16, 16)
-                .build();
+        iconButton = new ImageButton(20, 20, 20, 20, 0, 0, 20, ICON_GITHUB, 32, 64, button -> this.openWebLink(URL_GITHUB));
 
         iconButton.setTooltip(Tooltip.create(Component.translatable(MOD_ID + ".info.github.tooltip")));
 
@@ -209,15 +188,10 @@ public class ModInfoScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        // Render other screen elements (if any)
-        super.render(guiGraphics, mouseX, mouseY, delta);
-    }
 
-    @Override
-    public void renderBackground(@NotNull GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        drawRandomTiledBackground(guiGraphics);
-
-        randomShtShowering(guiGraphics, pPartialTick);
+        //background
+        this.renderBackground(guiGraphics);
+        randomShtShowering(guiGraphics, delta);
 
         guiGraphics.fillGradient(
                 0,
@@ -227,14 +201,24 @@ public class ModInfoScreen extends Screen {
                 0xaa000000, 0x80000000
         );
 
+        //end of background
+
         // Update time for animation (delta ensures smooth animation)
-        time += pPartialTick * 0.05f;
+        time += delta * 0.05f;
 
         // Draw the light rays behind the image
         drawLightRays(guiGraphics);
 
         // Draw the wobbling main image in the center
         drawWobblingImage(guiGraphics);
+
+        // Render other screen elements (if any)
+        super.render(guiGraphics, mouseX, mouseY, delta);
+    }
+
+    @Override
+    public void renderBackground(GuiGraphics guiGraphics) {
+        drawRandomTiledBackground(guiGraphics);
     }
 
     private void drawLightRays(GuiGraphics guiGraphics) {

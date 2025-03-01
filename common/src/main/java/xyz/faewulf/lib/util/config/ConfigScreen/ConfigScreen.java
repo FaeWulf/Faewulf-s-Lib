@@ -261,9 +261,7 @@ public class ConfigScreen extends Screen {
             ScreenRectangle screenRectangle = new ScreenRectangle(0, i, this.width - this.rightTab.getWidth() - RIGHT_TAB_PADDING, this.height);
 
             //resize and reposition
-
-            HeaderAndFooterLayout headerAndFooterLayout = new HeaderAndFooterLayout(this, i, 0);
-            this.slw.updateSize(screenRectangle.width(), headerAndFooterLayout);
+            this.slw.updateSize(screenRectangle.width(), screenRectangle.height(), screenRectangle.top(), screenRectangle.height());
 
             //this.slw.setSize(screenRectangle.width(), screenRectangle.height(), screenRectangle.top(), screenRectangle.height());
             this.tabManager.setTabArea(screenRectangle);
@@ -397,7 +395,7 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int $$1, int $$2, float $$3) {
-        this.renderBackground(guiGraphics, $$1, $$2, $$3);
+        this.renderBackground(guiGraphics);
         drawRandomTiledBackground(guiGraphics);
         //extra layer for right tab
         guiGraphics.fillGradient(

@@ -17,7 +17,7 @@ public class System {
         if (Minecraft.getInstance() != null)
             SystemToast.add(
                     Minecraft.getInstance().getToasts(),
-                    SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+                    SystemToast.SystemToastIds.PERIODIC_NOTIFICATION,
                     title, message
             );
     }

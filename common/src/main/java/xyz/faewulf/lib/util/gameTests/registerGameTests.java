@@ -52,7 +52,7 @@ public class registerGameTests {
 
                             ModifingConsumer consumer = new ModifingConsumer(aClass, method, Modifier.from(method));
 
-                            functions.add(new TestFunction(annotation.batch(), testName, template, rotation, annotation.timeoutTicks(), annotation.setupTicks(), annotation.required(), annotation.manualOnly(), annotation.attempts(), annotation.requiredSuccesses(), annotation.skyAccess(), consumer));
+                            functions.add(new TestFunction(annotation.batch(), testName, template, rotation, annotation.timeoutTicks(), annotation.setupTicks(), annotation.required(), annotation.requiredSuccesses(), annotation.attempts(), consumer));
                         }
                     }
                 });

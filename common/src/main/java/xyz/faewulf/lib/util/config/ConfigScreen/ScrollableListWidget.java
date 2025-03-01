@@ -22,17 +22,10 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
     private static String MOD_ID;
 
     public ScrollableListWidget(String MOD_ID_, Minecraft $$0, int $$1, int $$2, int $$3, int $$4, int $$5) {
-        super($$0, $$1, $$2, $$4, $$5);
+        super($$0, $$1, $$2, $$3, $$4, $$5);
 
         //this.setRenderBackground(false);
         MOD_ID = MOD_ID_;
-    }
-
-    public void setSize(int x, int y, int width, int height) {
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
     }
 
     public void clear() {
@@ -119,9 +112,8 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
             // (Because int the init<>, when entryInfo == null (GroupButton doesn't have entryInfo), it doesn't put default button to the elements list
             // So below is a special render handler for GroupButton
             if (entryInfo.pseudoEntry) {
-                if (elements.getFirst() instanceof GroupButton groupButton) {
+                if (elements.get(0) instanceof GroupButton groupButton) {
                     groupButton.setWidth(entryWidth);
-                    groupButton.setHeight(20);
                     groupButton.setX(x);
                     groupButton.setY(y);
                     groupButton.render(context, mouseX, mouseY, tickDelta);

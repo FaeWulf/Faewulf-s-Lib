@@ -21,7 +21,7 @@ public class NumberButton extends EditBox {
     private boolean isFirstTime = true;
 
     public NumberButton(String MOD_ID, Font font, int width, int height, Component message, ConfigLoaderFromAnnotation.EntryInfo entryInfo) {
-        super(font, width, height, message);
+        super(font, 0, 0, width, height, message);
 
         this.entryInfo = entryInfo;
 
