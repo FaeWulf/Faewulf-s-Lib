@@ -40,7 +40,7 @@ public class EnchantHelper {
      * @param enchant The {@link ResourceKey} representing the enchantment to retrieve.
      * @return {@code true} if has target Enchantment, {@code false} otherwise.
      */
-    public static boolean hasEnchantment(Level level, ItemStack stack, Enchantment enchant) {
+    public static boolean hasEnchantment(@Nullable Level level, ItemStack stack, Enchantment enchant) {
         return EnchantmentHelper.getItemEnchantmentLevel(enchant, stack) > 0;
     }
 
@@ -52,32 +52,7 @@ public class EnchantHelper {
      * @param enchant The {@link ResourceKey} representing the enchantment to retrieve.
      * @return {@code level > 0} if has target Enchantment, {@code 0} otherwise.
      */
-    public static int getEnchantLevelFromItem(Level level, ItemStack stack, ResourceKey<Enchantment> enchant) {
-        ItemEnchantments itemEnchantmentsComponent = EnchantmentHelper.getEnchantmentsForCrafting(stack);
-        Holder<Enchantment> enchantmentHolder = getEnchant(level, enchant);
-
-        if (enchantmentHolder == null)
-            return 0;
-
-        return itemEnchantmentsComponent.getLevel(enchantmentHolder);
-    }
-
-    /**
-     * Retrieves the {@link Enchantment}'s level if the target {@link ItemStack}
-     *
-     * @param level     The {@link Level} instance from which to access the enchantment registry.
-     * @param stack     The {@link ItemStack} itemStack want to check.
-     * @param namespace The namespace of the enchantment.
-     * @param path      The id of enchantment.
-     * @return {@code level > 0} if has target Enchantment, {@code 0} otherwise.
-     */
-    public static int getEnchantLevelFromItem(Level level, ItemStack stack, String namespace, String path) {
-        ItemEnchantments itemEnchantmentsComponent = EnchantmentHelper.getEnchantmentsForCrafting(stack);
-        Holder<Enchantment> enchantmentHolder = getEnchant(level, namespace, path);
-
-        if (enchantmentHolder == null)
-            return 0;
-
-        return itemEnchantmentsComponent.getLevel(enchantmentHolder);
+    public static int getEnchantLevelFromItem(@Nullable Level level, ItemStack stack, Enchantment enchant) {
+        return EnchantmentHelper.getItemEnchantmentLevel(enchant, stack);
     }
 }
