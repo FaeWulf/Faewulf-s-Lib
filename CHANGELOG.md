@@ -1,6 +1,8 @@
-# Changelog v1.1.1
+# Changelog v1.2.0
 
 ### Added
+
+- Entity utils.
 
 ### Changed
 
