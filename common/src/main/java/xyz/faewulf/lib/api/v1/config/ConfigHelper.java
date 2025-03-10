@@ -1,10 +1,8 @@
 package xyz.faewulf.lib.api.v1.config;
 
-import net.minecraft.client.gui.screens.Screen;
 import xyz.faewulf.lib.util.config.Config;
 import xyz.faewulf.lib.util.config.ModConfigs;
 import xyz.faewulf.lib.util.config.Entry;
-import xyz.faewulf.lib.util.config.infoScreen.ModInfoScreen;
 
 public class ConfigHelper {
 
@@ -21,15 +19,4 @@ public class ConfigHelper {
         Config.registerConfig(MOD_ID, ModConfigsClass);
     }
 
-
-    /**
-     * Retrieves the configuration screen for the specified mod.
-     *
-     * @param parent The parent screen from which the config screen is opened.
-     * @param MOD_ID The unique identifier of the mod.
-     * @return The configuration {@link Screen} for the given mod.
-     */
-    public static Screen getConfigScreen(Screen parent, String MOD_ID) {
-        return ModInfoScreen.getScreen(parent, MOD_ID);
-    }
 }
