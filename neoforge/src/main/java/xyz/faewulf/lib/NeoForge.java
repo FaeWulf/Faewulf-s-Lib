@@ -12,11 +12,6 @@ public class NeoForge {
     public NeoForge(IEventBus eventBus) {
         CommonClass.init();
 
-        //config
-        ModLoadingContext.get().registerExtensionPoint(
-                IConfigScreenFactory.class,
-                () -> (client, parent) -> ModInfoScreen.getScreen(parent, Constants.MOD_ID)
-        );
 
         Constants.LOG.info("Init done");
     }

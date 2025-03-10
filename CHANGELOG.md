@@ -1,4 +1,4 @@
-# Changelog v1.2.1
+# Changelog v1.2.2
 
 ### Added
 
@@ -9,3 +9,4 @@
 ### Fixed
 
 - Crash on startup if load the mod in server-side
+- Sorry for the inconvenient.
