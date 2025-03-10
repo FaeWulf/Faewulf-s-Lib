@@ -1,11 +1,11 @@
-# Changelog v1.2.0
+# Changelog v1.2.1
 
 ### Added
-
-- Entity utils.
 
 ### Changed
 
 ### Removed
 
 ### Fixed
+
+- Crash on startup if load the mod in server-side
