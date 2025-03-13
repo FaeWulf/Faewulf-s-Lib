@@ -11,8 +11,6 @@ public class NeoForge {
 
     public NeoForge(IEventBus eventBus) {
         CommonClass.init();
-
-
         Constants.LOG.info("Init done");
     }
 }
