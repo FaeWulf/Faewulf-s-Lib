@@ -36,12 +36,12 @@ pluginManagement {
                 includeGroupAndSubgroups('net.minecraftforge')
             }
         }
-
+        maven {
+            url = 'https://maven.parchmentmc.org'
+        }
         maven {
             url "https://maven.firstdark.dev/releases"
         }
-
-
     }
 }
 
@@ -54,4 +54,4 @@ rootProject.name = 'FaewulfLib-1.21.3'
 include('common')
 include('fabric')
 include('neoforge')
-//include('forge')
+include('forge')
