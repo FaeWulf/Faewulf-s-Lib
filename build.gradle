@@ -11,7 +11,7 @@ plugins {
 //custom task
 tasks.register('copyJars', Copy) {
 
-    dependsOn ':fabric:build', ':neoforge:build' // Make sure subprojects are built
+    dependsOn ':fabric:build', ':neoforge:build', ':forge:build'// Make sure subprojects are built
 
     from('fabric/build/libs') {
         include("*${project.version}.jar")
@@ -23,12 +23,17 @@ tasks.register('copyJars', Copy) {
         exclude('*-javadoc.jar', '*-sources.jar', '*-orphaned.jar')
     }
 
+    from('forge/build/libs') {
+        include("*${project.version}.jar")
+        exclude('*-javadoc.jar', '*-sources.jar', '*-orphaned.jar')
+    }
+
     into 'build/'
 }
 
 // Trigger the copyJars task after the subprojects' builds are done
 gradle.projectsEvaluated {
-    copyJars.mustRunAfter ':fabric:build', ':neoforge:build'
+    copyJars.mustRunAfter ':fabric:build', ':neoforge:build', ':forge:build'
 }
 
 // Add a custom task to trigger the copy process
@@ -37,7 +42,7 @@ tasks.register('buildAll') {
     description = 'Builds and copies the main JARs from subprojects to the root build folder.'
 
     //delete(fileTree("build/"))
-    dependsOn ':fabric:build', ':neoforge:build', copyJars
+    dependsOn ':fabric:build', ':neoforge:build', ':forge:build', copyJars
 }
 
 // Tasks for publish
@@ -106,7 +111,7 @@ subprojects { subproject ->
                     }
                     break
                 case "forge":
-                    setLoaders("Forge", "NeoForge")
+                    setLoaders("Forge")
                     setDisplayName("[Forge ${minecraft_version}] ${mod_name} v${project.version}")
                     break
                 case "neoforge":
