@@ -51,7 +51,7 @@ tasks.register('publishAllToModrinth') {
     description = 'Publish all subproject artifacts to Modrinth'
 
     //delete(fileTree("build/"))
-    dependsOn ':fabric:publishModrinth', ':neoforge:publishModrinth'
+    dependsOn ':fabric:publishModrinth', ':neoforge:publishModrinth', ':forge:publishModrinth'
 }
 
 tasks.register('publishAllToCurseforge') {
@@ -59,7 +59,7 @@ tasks.register('publishAllToCurseforge') {
     description = 'Publish all subproject artifacts to Curseforge'
 
     //delete(fileTree("build/"))
-    dependsOn ':fabric:publishCurseforge', ':neoforge:publishCurseforge'
+    dependsOn ':fabric:publishCurseforge', ':neoforge:publishCurseforge', ':forge:publishCurseforge'
 }
 
 tasks.register('publishAllToAll') {
