@@ -15,7 +15,6 @@ public class Forge {
         Constants.LOG.info("Init done");
     }
 
-
     @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientEvents {
         @SubscribeEvent
