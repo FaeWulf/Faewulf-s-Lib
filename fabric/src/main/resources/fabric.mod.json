@@ -22,9 +22,6 @@
     "client": [
       "xyz.faewulf.lib.FabricClient"
     ],
-    "fabric-gametest": [
-      "xyz.faewulf.lib.util.gameTests.registerGameTests"
-    ],
     "modmenu": [
       "xyz.faewulf.lib.config.ModMenuIntegration"
     ]

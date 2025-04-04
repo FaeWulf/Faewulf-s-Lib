@@ -260,8 +260,6 @@ public class ModInfoScreen extends Screen {
         // Apply breathing scale
 
         // Draw light rays, slightly scaled up and centered
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
         guiGraphics.blit(
                 RenderType::guiTextured,
                 LIGHT_RAYS,
@@ -270,7 +268,6 @@ public class ModInfoScreen extends Screen {
                 size, size,
                 size, size
         );
-        RenderSystem.disableBlend();
 
         matrixStack.popPose();
     }
@@ -289,8 +286,6 @@ public class ModInfoScreen extends Screen {
         //guiGraphics.pose().scale(wobbleScale, wobbleScale, 1.0f);  // Apply wobble scaling
 
         // Render the image at the center, adjusted for the wobble
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
         guiGraphics.blit(
                 RenderType::guiTextured,
                 MAIN_IMAGE,
@@ -300,7 +295,6 @@ public class ModInfoScreen extends Screen {
                 imageSize, imageSize,
                 imageSize, imageSize
         );
-        RenderSystem.disableBlend();
 
         guiGraphics.pose().popPose();  // Restore the original transformation state
     }
