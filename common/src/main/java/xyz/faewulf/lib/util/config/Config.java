@@ -79,6 +79,25 @@ public class Config {
         saveConfig(configRecord);
     }
 
+    public static void reloadConfig(String modId) {
+        if (!LIST_OF_CONFIG.containsKey(modId)) {
+            Constants.LOG.error("{} not valid/not found.", modId);
+            return;
+        }
+
+        loadFromFile(LIST_OF_CONFIG.get(modId));
+        Constants.LOG.info("Reloaded {} config file.", modId);
+    }
+
+    public static void reloadAllConfig() {
+        LIST_OF_CONFIG.forEach((s, configRecord) -> {
+            loadFromFile(configRecord);
+            Constants.LOG.info("Reloaded {} config file.", configRecord.getName());
+        });
+
+        Constants.LOG.info("Total config reloaded: {}", LIST_OF_CONFIG.size());
+    }
+
     private static void saveConfig(ConfigRecord configRecord) {
         try (FileWriter writer = new FileWriter(configRecord.getCONFIG_PATH())) {
 

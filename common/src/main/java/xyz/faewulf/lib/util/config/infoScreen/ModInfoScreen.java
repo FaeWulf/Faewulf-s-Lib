@@ -20,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xyz.faewulf.lib.util.config.Config;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.ConfigScreen;
 
@@ -105,6 +106,9 @@ public class ModInfoScreen extends Screen {
     protected void init() {
         //background
         generateRandomTileMap();
+
+        // Try to reload config file if changed outside the game.
+        Config.reloadConfig(MOD_ID);
 
         //rain
         for (int i = 0; i < 25; i++) {  // Example for 100 falling entities
