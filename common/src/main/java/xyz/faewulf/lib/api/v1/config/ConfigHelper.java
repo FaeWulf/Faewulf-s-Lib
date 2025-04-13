@@ -19,4 +19,13 @@ public class ConfigHelper {
         Config.registerConfig(MOD_ID, ModConfigsClass);
     }
 
+
+    /**
+     * Reload a config file for the specified configuration class.
+     *
+     * @param MOD_ID The unique mod identifier of the config needs to reload.
+     */
+    public static void reload(String MOD_ID) {
+        Config.reloadConfig(MOD_ID);
+    }
 }
