@@ -33,7 +33,7 @@ public class Fabric implements ModInitializer {
 
             @Override
             public ResourceLocation getFabricId() {
-                return new ResourceLocation(Constants.MOD_ID, "reload_listener");
+                return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "reload_listener");
             }
         });
     }

@@ -3,9 +3,9 @@ package xyz.faewulf.lib.event;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.Config;
@@ -13,7 +13,7 @@ import xyz.faewulf.lib.util.config.Config;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-@Mod.EventBusSubscriber(modid = Constants.MOD_ID)
+@EventBusSubscriber(modid = Constants.MOD_ID)
 public class onReloadServer {
     @SubscribeEvent
     public static void onRegisterReloadListeners(AddReloadListenerEvent event) {
@@ -25,7 +25,7 @@ public class onReloadServer {
 class MyCustomReloadListener implements PreparableReloadListener {
 
     @Override
-    public @NotNull CompletableFuture<Void> reload(PreparableReloadListener.PreparationBarrier stage, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller preparationsProfiler, @NotNull ProfilerFiller reloadProfiler, @NotNull Executor backgroundExecutor, @NotNull Executor gameExecutor) {
+    public @NotNull CompletableFuture<Void> reload(PreparationBarrier stage, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller preparationsProfiler, @NotNull ProfilerFiller reloadProfiler, @NotNull Executor backgroundExecutor, @NotNull Executor gameExecutor) {
         return CompletableFuture.runAsync(Config::reloadAllConfig, backgroundExecutor).thenCompose(stage::wait);
     }
 }
