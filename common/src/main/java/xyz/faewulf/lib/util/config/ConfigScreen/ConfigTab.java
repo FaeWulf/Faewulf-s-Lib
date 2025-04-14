@@ -8,10 +8,7 @@ import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
-import xyz.faewulf.lib.util.config.ConfigScreen.Components.GroupButton;
-import xyz.faewulf.lib.util.config.ConfigScreen.Components.NumberButton;
-import xyz.faewulf.lib.util.config.ConfigScreen.Components.NumberButtonInfo;
-import xyz.faewulf.lib.util.config.ConfigScreen.Components.OptionButton;
+import xyz.faewulf.lib.util.config.ConfigScreen.Components.*;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -64,9 +61,15 @@ public class ConfigTab implements Tab {
                         buttonList.add(
                                 new NumberButtonInfo(MOD_ID, 0, 20, Component.literal(s1), Minecraft.getInstance().font, entryInfo).alignLeft()
                         );
-                        buttonList.add(
-                                new NumberButton(MOD_ID, Minecraft.getInstance().font, 0, 20, Component.literal(s1), entryInfo)
-                        );
+                        if (entryInfo.slider == null) {
+                            buttonList.add(
+                                    new NumberButton(MOD_ID, Minecraft.getInstance().font, 0, 16, Component.literal(s1), entryInfo)
+                            );
+                        } else {
+                            buttonList.add(
+                                    new IntSliderButton(MOD_ID, 0, 20, Component.literal(s1), entryInfo)
+                            );
+                        }
                     } else
                         // Handle for: boolean and enum
                         buttonList.add(

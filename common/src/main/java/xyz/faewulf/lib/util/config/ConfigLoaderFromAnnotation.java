@@ -31,11 +31,29 @@ public class ConfigLoaderFromAnnotation {
 
                 // Add the field's value to the map
                 try {
+
                     Object value = field.get(null); // Access static field value
+
+                    // Entry result
+                    EntryInfo entryInfo = new EntryInfo(field, field.getName(), name, info, value, require_restart, hidden, group);
+
+                    // For slider annotation
+                    SliderEntry sliderAnno = field.getAnnotation(SliderEntry.class);
+                    if (sliderAnno != null) {
+                        if (field.getType() != int.class) {
+                            throw new IllegalArgumentException("@SliderEntry can only be applied to int fields: " + field.getName());
+                        }
+
+                        int min = sliderAnno.min();
+                        int max = sliderAnno.max();
+                        int step = sliderAnno.step();
+
+                        entryInfo.setSlider(new SliderInfo(min, max, step));
+                    }
 
                     // If category map doesn't exist, create it
                     configMap.computeIfAbsent(category, k -> new LinkedHashMap<>());
-                    configMap.get(category).put(name, new EntryInfo(field, field.getName(), name, info, value, require_restart, hidden, group));
+                    configMap.get(category).put(name, entryInfo);
 
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -70,10 +88,26 @@ public class ConfigLoaderFromAnnotation {
 
                 // Add the field's value to the map
                 try {
+
                     Object value = field.get(null); // Access static field value
+                    EntryInfo entryInfo = new EntryInfo(field, field.getName(), name, info, value, require_restart, hidden, group);
+
+                    // For slider annotation
+                    SliderEntry sliderAnno = field.getAnnotation(SliderEntry.class);
+                    if (sliderAnno != null) {
+                        if (field.getType() != int.class) {
+                            throw new IllegalArgumentException("@SliderEntry can only be applied to int fields: " + field.getName());
+                        }
+
+                        int min = sliderAnno.min();
+                        int max = sliderAnno.max();
+                        int step = sliderAnno.step();
+
+                        entryInfo.setSlider(new SliderInfo(min, max, step));
+                    }
 
                     // If category map doesn't exist, create it
-                    configMap.put(name, new EntryInfo(field, field.getName(), name, info, value, require_restart, hidden, group));
+                    configMap.put(name, entryInfo);
 
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -158,6 +192,8 @@ public class ConfigLoaderFromAnnotation {
         public String group;
         public boolean hidden;
 
+        public SliderInfo slider = null;
+
         public boolean pseudoEntry = true;
         public boolean visibleInConfig = true;
 
@@ -173,8 +209,25 @@ public class ConfigLoaderFromAnnotation {
             this.hidden = hidden;
         }
 
+        public void setSlider(SliderInfo slider) {
+            this.slider = slider;
+        }
+
         public EntryInfo(String name) {
             this.name = name;
+        }
+    }
+
+    public static class SliderInfo {
+        public int min;
+        public int max;
+        public int step;
+
+        public SliderInfo(int min, int max, int step) {
+            this.max = max;
+            this.min = min;
+            // Prevent step <= 0
+            this.step = Math.max(step, 1);
         }
     }
 }
