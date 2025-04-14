@@ -10,7 +10,13 @@ public class ModConfigs {
     public static boolean boolean_test = true;
 
     @Entry(category = "Client", name = "Enum type", require_restart = false)
-    public static boolean enum_test = true;
+    public static Level enum_test = Level.LOW;
+
+    enum Level {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 
     @Entry(category = "Client", name = "Int value", require_restart = false, group = "Number option")
     public static int int_test = 10;
