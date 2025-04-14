@@ -1,10 +1,11 @@
 package xyz.faewulf.lib.event;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.Config;
@@ -15,9 +16,9 @@ import java.util.concurrent.Executor;
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class onReloadServer {
     @SubscribeEvent
-    public static void onRegisterReloadListeners(AddReloadListenerEvent event) {
+    public static void onRegisterReloadListeners(AddServerReloadListenersEvent event) {
         // This registers your custom listener that runs whenever /reload happens
-        event.addListener(new MyCustomReloadListener());
+        event.addListener(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "reload_config"), new MyCustomReloadListener());
     }
 }
 
