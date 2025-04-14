@@ -2,6 +2,7 @@ package xyz.faewulf.lib.util.config;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
 import xyz.faewulf.lib.Constants;
+import xyz.faewulf.lib.platform.Services;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,7 +27,8 @@ public class Config {
         if (alreadyInit)
             return;
 
-        //registerConfig(Constants.MOD_ID, ModConfigs.class);
+        if (Services.PLATFORM.isDevelopmentEnvironment())
+            registerConfig(Constants.MOD_ID, ModConfigs.class);
 
         alreadyInit = true;
     }
