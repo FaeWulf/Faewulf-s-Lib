@@ -34,7 +34,7 @@ public class NumberButton extends EditBox {
             Object object = entryInfo.targetField.get(null);
             this.setValue(object.toString());
         } catch (IllegalAccessException e) {
-            Constants.LOG.error("[backpack] Something went wrong with the Number button...");
+            Constants.LOG.error("Something went wrong with the Number button...");
             e.printStackTrace();
         }
 
@@ -62,7 +62,7 @@ public class NumberButton extends EditBox {
             }
 
         } catch (IllegalAccessException e) {
-            Constants.LOG.error("[backpack] Something went wrong with the Number button...");
+            Constants.LOG.error("Something went wrong with the Number button...");
             e.printStackTrace();
         }
 
@@ -88,7 +88,7 @@ public class NumberButton extends EditBox {
         try {
             field.set(null, Integer.parseInt(filter));
         } catch (IllegalAccessException | NumberFormatException e) {
-            Constants.LOG.error("[backpack] Something went wrong with the config system...");
+            Constants.LOG.error("Something went wrong with the config system...");
             e.printStackTrace();
         }
     }

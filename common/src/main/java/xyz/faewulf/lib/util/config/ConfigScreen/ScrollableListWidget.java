@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.Components.DefaultButton;
 import xyz.faewulf.lib.util.config.ConfigScreen.Components.GroupButton;
+import xyz.faewulf.lib.util.config.ConfigScreen.Components.NumberButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,9 +103,17 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
 
                 int width = (entryWidth - 2 - DEFAULT_BUTTON_SIZE) / (elements.size() - 1);
 
-                abstractWidget.setWidth(width - 2);
-                abstractWidget.setX(x + i * width + 2 - SCROLLBAR_OFFSET / 2);
-                abstractWidget.setY(y);
+                // Number button has border (not calculate in widget's width), which have to subtract it
+                if (abstractWidget instanceof NumberButton) {
+                    abstractWidget.setWidth(width - 6);
+                    abstractWidget.setX(x + i * width + 2 - SCROLLBAR_OFFSET / 2 + 2);
+                    abstractWidget.setY(y + 2);
+                } else {
+                    abstractWidget.setWidth(width - 2);
+                    abstractWidget.setX(x + i * width + 2 - SCROLLBAR_OFFSET / 2);
+                    abstractWidget.setY(y);
+                }
+
                 abstractWidget.render(context, mouseX, mouseY, tickDelta);
             }
 
