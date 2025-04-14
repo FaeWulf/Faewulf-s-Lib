@@ -2,7 +2,6 @@ package xyz.faewulf.lib.event;
 
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
@@ -23,9 +22,8 @@ public class onReloadServer {
 }
 
 class MyCustomReloadListener implements PreparableReloadListener {
-
     @Override
-    public @NotNull CompletableFuture<Void> reload(PreparationBarrier stage, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller preparationsProfiler, @NotNull ProfilerFiller reloadProfiler, @NotNull Executor backgroundExecutor, @NotNull Executor gameExecutor) {
-        return CompletableFuture.runAsync(Config::reloadAllConfig, backgroundExecutor).thenCompose(stage::wait);
+    public @NotNull CompletableFuture<Void> reload(@NotNull PreparationBarrier preparationBarrier, @NotNull ResourceManager resourceManager, @NotNull Executor executor, @NotNull Executor executor1) {
+        return CompletableFuture.runAsync(Config::reloadAllConfig, executor).thenCompose(preparationBarrier::wait);
     }
 }
