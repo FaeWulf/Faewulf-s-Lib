@@ -22,11 +22,6 @@ public class Fabric implements ModInitializer {
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
 
             @Override
-            public @NotNull CompletableFuture<Void> reload(PreparationBarrier preparationBarrier, ResourceManager resourceManager, ProfilerFiller preparationsProfiler, ProfilerFiller reloadProfiler, Executor backgroundExecutor, Executor gameExecutor) {
-                return SimpleSynchronousResourceReloadListener.super.reload(preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor);
-            }
-
-            @Override
             public void onResourceManagerReload(ResourceManager resourceManager) {
                 Config.reloadAllConfig();
             }
