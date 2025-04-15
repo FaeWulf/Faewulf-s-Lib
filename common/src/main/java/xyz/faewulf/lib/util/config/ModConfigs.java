@@ -9,10 +9,23 @@ public class ModConfigs {
     @Entry(category = "Client", name = "Boolean", require_restart = false)
     public static boolean boolean_test = true;
 
-    @Entry(category = "Client", name = "Enum type", require_restart = false)
-    public static Level enum_test = Level.LOW;
+    @Entry(category = "Client", name = "Boolean With not so very very very long name", require_restart = false, group = "With long field name")
+    public static boolean boolean_test2 = true;
 
-    enum Level {
+    @Entry(category = "Client", name = "Enum type with very very very very long name", require_restart = false, group = "With long field name")
+    public static Options enum_test = Options.LOW;
+
+    @Entry(category = "Client", name = "Int number with long name", require_restart = false, group = "With long field name")
+    public static int int_test_2 = 100;
+
+    @SliderEntry(min = 0, max = 100, step = 5)
+    @Entry(category = "Client", name = "Slider Int option with long name", require_restart = false, group = "With long field name")
+    public static int int_test_10 = 100;
+
+    @Entry(category = "Client", name = "Enum type", require_restart = false)
+    public static Options enum_test_2 = Options.LOW;
+
+    enum Options {
         LOW,
         MEDIUM,
         HIGH
