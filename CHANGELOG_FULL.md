@@ -1,3 +1,14 @@
+# [1.3.0] - 2025-4-14
+
+### Added
+
+- Added slider option.
+- Config now can be reload via `/reload` command.
+
+## Fixed
+
+- Corrected Number edit box option width and height to prevent overlap with other options.
+
 # [1.2.3] - 2025-4-4
 
 ### Fixed
