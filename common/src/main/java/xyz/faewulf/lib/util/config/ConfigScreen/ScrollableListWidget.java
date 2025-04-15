@@ -29,6 +29,11 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
         MOD_ID = MOD_ID_;
     }
 
+    @Override
+    protected int getScrollbarPosition() {
+        return this.x0 + this.width - SCROLLBAR_OFFSET;
+    }
+
     public void clear() {
         this.clearEntries();
     }
