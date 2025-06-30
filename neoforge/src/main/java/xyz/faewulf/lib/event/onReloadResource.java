@@ -7,7 +7,7 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.registry.ItemTagRegistry;
 
-@EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class onReloadResource {
     @SubscribeEvent
     public static void onReloadResourceEvent(AddPackFindersEvent event) {

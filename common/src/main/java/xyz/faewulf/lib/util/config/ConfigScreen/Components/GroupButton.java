@@ -5,7 +5,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.ConfigScreen;
 
@@ -29,7 +31,7 @@ public class GroupButton extends Button {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         int i = this.active ? 16777215 : 10526880;
         this.renderString(guiGraphics, Minecraft.getInstance().font, i | Mth.ceil(this.alpha * 255.0F) << 24);
 
@@ -41,7 +43,7 @@ public class GroupButton extends Button {
         int leftTextX = this.getX() + 4;  // Left-aligned, 4 pixels from the left edge
         int textY = (int) (this.getY() + (this.height - Minecraft.getInstance().font.lineHeight) * 1.1f / 2);  // Vertically centered for text
 
-        guiGraphics.drawString(Minecraft.getInstance().font, indicator, leftTextX, textY, 0xFFFFFF);  // Left value
+        guiGraphics.drawString(Minecraft.getInstance().font, indicator, leftTextX, textY, ARGB.white(this.alpha));  // Left value
     }
 
     @Override

@@ -1,10 +1,9 @@
 package xyz.faewulf.lib.util.config.infoScreen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.ResourceLocation;
+import org.joml.Matrix3x2fStack;
 import xyz.faewulf.lib.Constants;
 
 public class rainITem {
@@ -68,16 +67,17 @@ public class rainITem {
     public void render(GuiGraphics guiGraphics, float delta) {
 
         // Apply transformations
-        PoseStack poseStack = guiGraphics.pose();
-        poseStack.pushPose();
-        poseStack.translate(x + ITEM_SIZE / 2f, y + ITEM_SIZE / 2f, 0);
-        poseStack.mulPose(Axis.ZP.rotationDegrees(rotationAngle));
-        poseStack.translate(-ITEM_SIZE / 2f, -ITEM_SIZE / 2f, 0);
+        Matrix3x2fStack poseStack = guiGraphics.pose();
+        poseStack.pushMatrix();
+        poseStack.translate(x + ITEM_SIZE / 2f, y + ITEM_SIZE / 2f);
+        //poseStack.mulPose(Axis.ZP.rotationDegrees(rotationAngle));
+        poseStack.rotate((float) Math.toRadians(rotationAngle));
+        poseStack.translate(-ITEM_SIZE / 2f, -ITEM_SIZE / 2f);
 
         // Draw the texture
 
         guiGraphics.blit(
-                RenderType::guiTextured,
+                RenderPipelines.GUI_TEXTURED,
                 RAIN_ITEM,
                 0,  // X position on the screen
                 0,  // Y position on the screen
@@ -86,6 +86,6 @@ public class rainITem {
                 48, 48  // Atlas size (width, height)
         );
 
-        poseStack.popPose();
+        poseStack.popMatrix();
     }
 }

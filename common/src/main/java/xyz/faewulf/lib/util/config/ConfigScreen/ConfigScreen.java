@@ -12,7 +12,7 @@ import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -397,8 +397,9 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int $$1, int $$2, float $$3) {
-        this.renderBackground(guiGraphics, $$1, $$2, $$3);
-        drawRandomTiledBackground(guiGraphics);
+        //this.renderBackground(guiGraphics, $$1, $$2, $$3);
+
+        //drawRandomTiledBackground(guiGraphics);
         //extra layer for right tab
         guiGraphics.fillGradient(
                 this.rightTab.getX() - RIGHT_TAB_PADDING,
@@ -423,7 +424,7 @@ public class ConfigScreen extends Screen {
 
                 //Draw the tile from the atlas
                 guiGraphics.blit(
-                        RenderType::guiOpaqueTexturedBackground,
+                        RenderPipelines.GUI_OPAQUE_TEXTURED_BACKGROUND,
                         ATLAS_TEXTURE,
                         x * TILE_SIZE,  // X position on the screen
                         y * TILE_SIZE,  // Y position on the screen

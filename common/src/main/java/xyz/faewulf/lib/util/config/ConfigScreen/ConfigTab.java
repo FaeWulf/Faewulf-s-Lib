@@ -138,6 +138,11 @@ public class ConfigTab implements Tab {
     }
 
     @Override
+    public @NotNull Component getTabExtraNarration() {
+        return Component.empty();
+    }
+
+    @Override
     public void visitChildren(@NotNull Consumer<AbstractWidget> consumer) {
 
     }

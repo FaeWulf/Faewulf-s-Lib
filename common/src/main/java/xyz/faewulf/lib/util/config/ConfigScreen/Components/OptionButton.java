@@ -8,6 +8,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.ARGB;
 import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
@@ -46,7 +47,7 @@ public class OptionButton extends Button {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.renderWidget(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
 
         if (isMouseOver(pMouseX, pMouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
@@ -65,7 +66,7 @@ public class OptionButton extends Button {
     }
 
     @Override
-    public void renderString(GuiGraphics graphics, @NotNull Font textRenderer, int color) {
+    public void renderString(@NotNull GuiGraphics graphics, @NotNull Font textRenderer, int color) {
         Font font = Minecraft.getInstance().font;
 
         String leftValue = getMessage().getString();
@@ -97,7 +98,7 @@ public class OptionButton extends Button {
 
         // Draw the left and right values
 
-        graphics.drawString(font, component, rightTextX, textY, 0xFFFFFF);  // Right value
+        graphics.drawString(font, component, rightTextX, textY, ARGB.white(this.alpha));  // Right value
 
         String displayedLeftValue = trimTextWithEllipsis(leftValue, (int) ((this.width - 4) * 0.7), font);
 
@@ -105,7 +106,7 @@ public class OptionButton extends Button {
         if (isChanging())
             leftTextComp = Component.literal(displayedLeftValue).withStyle(ChatFormatting.ITALIC, ChatFormatting.YELLOW);
 
-        graphics.drawString(font, leftTextComp, leftTextX, textY, 0xFFFFFF);  // Left value
+        graphics.drawString(font, leftTextComp, leftTextX, textY, ARGB.white(this.alpha));  // Left value
     }
 
     private boolean isChanging() {

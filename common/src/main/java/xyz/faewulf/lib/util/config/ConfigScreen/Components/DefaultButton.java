@@ -1,12 +1,12 @@
 package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
+import org.joml.Matrix3x2fStack;
 
 public class DefaultButton extends Button {
     public DefaultButton(String MOD_ID, int x, int y, int width, int height, Component Text, OnPress onPress) {
@@ -17,7 +17,7 @@ public class DefaultButton extends Button {
     @Override
     public void renderString(GuiGraphics graphics, Font textRenderer, int color) {
         Font font = Minecraft.getInstance().font;
-        PoseStack pose = graphics.pose();
+        Matrix3x2fStack pose = graphics.pose();
 
         float scale = 2f;  // Set the scale (2.0f means 2x size)
         int textWidth = textRenderer.width(this.getMessage());
@@ -27,10 +27,10 @@ public class DefaultButton extends Button {
         int textX = this.getX() + 1 + (this.width - (int) (textWidth * scale)) / 2;
         int textY = this.getY() - 1 + (this.height - (int) (textHeight * scale)) / 2;
 
-        pose.pushPose();
-        pose.scale(scale, scale, 1);
-        pose.translate((textX / scale), (textY / scale), 0);
+        pose.pushMatrix();
+        pose.scale(scale, scale);
+        pose.translate((textX / scale), (textY / scale));
         graphics.drawString(font, getMessage(), 0, 0, color | 0xFFFFFF, true);
-        pose.popPose();
+        pose.popMatrix();
     }
 }

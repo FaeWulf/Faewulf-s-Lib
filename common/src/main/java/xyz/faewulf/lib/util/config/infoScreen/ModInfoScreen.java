@@ -1,8 +1,5 @@
 package xyz.faewulf.lib.util.config.infoScreen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -12,14 +9,14 @@ import net.minecraft.client.gui.components.SpriteIconButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
-import net.minecraft.client.gui.layouts.Layout;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Matrix3x2fStack;
 import xyz.faewulf.lib.util.config.Config;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.ConfigScreen;
@@ -249,23 +246,24 @@ public class ModInfoScreen extends Screen {
         float rotationAngle = time * 20.0f;
 
         // Apply rotation and scale transformations
-        PoseStack matrixStack = guiGraphics.pose();
-        matrixStack.pushPose();  // Save the current transformation state
+        Matrix3x2fStack matrixStack = guiGraphics.pose();
+        matrixStack.pushMatrix();  // Save the current transformation state
 
         float wobbleOffsetY = (float) Math.sin(time) * 5.0f;  // 5-pixel wobble effect
 
         // Translate to the center of the screen
         // Apply rotation (in degrees)
 
-        matrixStack.translate(centerX, centerY + wobbleOffsetY, 0);
-        matrixStack.mulPose(Axis.ZP.rotationDegrees(rotationAngle));
-        guiGraphics.pose().translate(-size / 2f, -size / 2f, 0);  // Move to center + wobble
+        matrixStack.translate(centerX, centerY + wobbleOffsetY);
+        matrixStack.rotate((float) Math.toRadians(rotationAngle));
+        matrixStack.translate(-size / 2f, -size / 2f);  // Move to center + wobble
 
         // Apply breathing scale
 
         // Draw light rays, slightly scaled up and centered
         guiGraphics.blit(
-                RenderType::guiTextured,
+                //RenderType::guiTextured,
+                RenderPipelines.GUI_TEXTURED,
                 LIGHT_RAYS,
                 0, 0,
                 0, 0,
@@ -273,7 +271,7 @@ public class ModInfoScreen extends Screen {
                 size, size
         );
 
-        matrixStack.popPose();
+        matrixStack.popMatrix();
     }
 
     private void drawWobblingImage(GuiGraphics guiGraphics) {
@@ -285,13 +283,15 @@ public class ModInfoScreen extends Screen {
         float wobbleOffsetY = (float) Math.sin(time) * 5.0f;  // 10-pixel wobble effect
 
         // Apply wobble effect using MatrixStack transformations
-        guiGraphics.pose().pushPose();  // Save the current transformation state
-        guiGraphics.pose().translate(centerX, centerY + wobbleOffsetY, 0);  // Move to center + wobble
+        Matrix3x2fStack poseStack = guiGraphics.pose();
+        poseStack.pushMatrix();  // Save the current transformation state
+        poseStack.translate(centerX, centerY + wobbleOffsetY);  // Move to center + wobble
         //guiGraphics.pose().scale(wobbleScale, wobbleScale, 1.0f);  // Apply wobble scaling
 
         // Render the image at the center, adjusted for the wobble
         guiGraphics.blit(
-                RenderType::guiTextured,
+                //RenderType::guiTextured,
+                RenderPipelines.GUI_TEXTURED,
                 MAIN_IMAGE,
                 -imageSize / 2,  // Center the image on the X axis
                 -imageSize / 2,  // Center the image on the Y axis
@@ -300,7 +300,7 @@ public class ModInfoScreen extends Screen {
                 imageSize, imageSize
         );
 
-        guiGraphics.pose().popPose();  // Restore the original transformation state
+        poseStack.popMatrix();  // Restore the original transformation state
     }
 
 
@@ -347,7 +347,8 @@ public class ModInfoScreen extends Screen {
 
                 // Draw the tile from the atlas
                 guiGraphics.blit(
-                        RenderType::guiTextured,
+                        //RenderType::guiTextured,
+                        RenderPipelines.GUI_TEXTURED,
                         ATLAS_TEXTURE,
                         x * TILE_SIZE,  // X position on the screen
                         y * TILE_SIZE,  // Y position on the screen
