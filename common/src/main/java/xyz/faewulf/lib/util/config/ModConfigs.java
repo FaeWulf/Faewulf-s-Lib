@@ -38,7 +38,7 @@ public class ModConfigs {
     @SliderEntry(min = 0, max = 100, step = 2)
     public static int int_slider = 50;
 
-    @Entry(category = "Server", name = "Boolean with caution", require_restart = true)
+    @Entry(category = "Server", name = "Boolean with caution", require_restart = true, info = "This is an example info")
     public static boolean boolean_with_caution = false;
 
     @Entry(category = "style", name = "Hidden value 1", require_restart = false, hidden = true)
