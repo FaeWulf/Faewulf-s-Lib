@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Config {
@@ -111,12 +113,19 @@ public class Config {
                 //group
                 writer.write("[" + entry.getKey() + "]\n");
 
+                List<String> groupAppeared = new ArrayList<>();
+
                 for (Map.Entry<String, ConfigLoaderFromAnnotation.EntryInfo> subEntry : entry.getValue().entrySet()) {
+
+                    if (!groupAppeared.contains(subEntry.getValue().group)) {
+                        groupAppeared.add(subEntry.getValue().group);
+                        writer.write("\n# Group: " + subEntry.getValue().group + "\n");
+                    }
 
                     //put value
                     writer.write('"' + subEntry.getKey() + '"' + " = " + toTomlValue(subEntry.getValue().value));
 
-                    //put info if it has
+                    //put info if it has info
                     if (!subEntry.getValue().info.isEmpty())
                         writer.write("\t\t\t# " + subEntry.getValue().info);
 
