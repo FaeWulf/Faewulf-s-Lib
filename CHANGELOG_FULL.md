@@ -1,3 +1,13 @@
+# [1.3.1] - 2025-6-30
+
+### Added
+
+- Scroll effect for long text.
+
+## Fixed
+
+- Fixed scrollbar position for config options list.
+
 # [1.3.0] - 2025-4-14
 
 ### Added
