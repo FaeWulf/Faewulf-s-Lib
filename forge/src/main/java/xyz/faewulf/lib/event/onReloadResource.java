@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.registry.ItemTagRegistry;
 
-@Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class onReloadResource {
     @SubscribeEvent
     public static void onReloadResourceEvent(AddPackFindersEvent event) {

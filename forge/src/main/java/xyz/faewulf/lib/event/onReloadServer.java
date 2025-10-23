@@ -1,7 +1,6 @@
 package xyz.faewulf.lib.event;
 
 import net.minecraft.server.packs.resources.PreparableReloadListener;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,9 +21,8 @@ public class onReloadServer {
 }
 
 class MyCustomReloadListener implements PreparableReloadListener {
-
     @Override
-    public @NotNull CompletableFuture<Void> reload(@NotNull PreparationBarrier preparationBarrier, @NotNull ResourceManager resourceManager, @NotNull Executor executor, @NotNull Executor executor1) {
+    public @NotNull CompletableFuture<Void> reload(@NotNull SharedState sharedState, @NotNull Executor executor, PreparationBarrier preparationBarrier, @NotNull Executor executor1) {
         return CompletableFuture.runAsync(Config::reloadAllConfig, executor).thenCompose(preparationBarrier::wait);
     }
 }

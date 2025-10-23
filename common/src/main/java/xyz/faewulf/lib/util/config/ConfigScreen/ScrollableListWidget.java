@@ -102,7 +102,13 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
         }
 
         @Override
-        public void render(GuiGraphics context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+//      public void render(GuiGraphics context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void renderContent(GuiGraphics context, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+
+            int x = this.getContentX(),
+                    y = this.getContentY(),
+                    entryWidth = this.getContentWidth();
+
 
             // Render all buttons except default button
             for (int i = 0; i < elements.size() - 1; i++) {
@@ -157,8 +163,6 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
 
             this.defaultButton.active = !value.equals(defaultValue);
         }
-
-
     }
 
 }

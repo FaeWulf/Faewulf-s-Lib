@@ -4,8 +4,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.ConfigScreen;
@@ -41,11 +43,11 @@ public class NumberButton extends EditBox {
     }
 
     @Override
-    public boolean charTyped(char codePoint, int modifiers) {
-        if (!Character.isDigit(codePoint)) {
+    public boolean charTyped(@NotNull CharacterEvent characterEvent) {
+        if (!Character.isDigit(characterEvent.codepoint())) {
             return false; // Ignore non-numeric input
         }
-        return super.charTyped(codePoint, modifiers);
+        return super.charTyped(characterEvent);
     }
 
     @Override

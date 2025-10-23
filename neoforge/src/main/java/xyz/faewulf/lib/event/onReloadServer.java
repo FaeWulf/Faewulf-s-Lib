@@ -24,7 +24,7 @@ public class onReloadServer {
 
 class MyCustomReloadListener implements PreparableReloadListener {
     @Override
-    public @NotNull CompletableFuture<Void> reload(@NotNull PreparationBarrier preparationBarrier, @NotNull ResourceManager resourceManager, @NotNull Executor executor, @NotNull Executor executor1) {
+    public CompletableFuture<Void> reload(SharedState sharedState, Executor executor, PreparationBarrier preparationBarrier, Executor executor1) {
         return CompletableFuture.runAsync(Config::reloadAllConfig, executor).thenCompose(preparationBarrier::wait);
     }
 }

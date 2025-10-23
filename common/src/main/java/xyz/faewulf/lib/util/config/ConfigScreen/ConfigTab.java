@@ -59,7 +59,7 @@ public class ConfigTab implements Tab {
                     // Handle for: Number
                     if (ref instanceof Number) {
                         buttonList.add(
-                                new NumberButtonInfo(MOD_ID, 0, 20, Component.literal(s1), Minecraft.getInstance().font, entryInfo).alignLeft()
+                                new NumberButtonInfo(MOD_ID, 0, 20, Component.literal(s1), Minecraft.getInstance().font, entryInfo)
                         );
                         if (entryInfo.slider == null) {
                             buttonList.add(

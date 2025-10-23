@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
@@ -47,7 +48,9 @@ public class GroupButton extends Button {
     }
 
     @Override
-    public void onPress() {
+    public void onPress(@NotNull InputWithModifiers inputWithModifiers) {
+        super.onPress(inputWithModifiers);
+
         this.controlList.forEach(entryInfo -> entryInfo.visibleInConfig = hide);
         hide = !hide;
         ConfigScreen.updateCall = true;
