@@ -1,7 +1,7 @@
 package xyz.faewulf.lib.util;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -25,7 +25,7 @@ public class Compare {
      */
     public static boolean isHasTag(Block block, String tagName) {
         // Create a TagKey for the block using the tagName.
-        ResourceLocation path = ResourceLocation.tryParse(tagName);
+        Identifier path = Identifier.tryParse(tagName);
 
         if (path == null)
             return false;
@@ -57,7 +57,7 @@ public class Compare {
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isHasTag(Entity entity, String tagName) {
-        ResourceLocation path = ResourceLocation.tryParse(tagName);
+        Identifier path = Identifier.tryParse(tagName);
 
         if (path == null)
             return false;
@@ -77,7 +77,7 @@ public class Compare {
         // Create a TagKey for the block using the tagName.
 
 
-        ResourceLocation path = ResourceLocation.tryParse(tagName);
+        Identifier path = Identifier.tryParse(tagName);
 
         if (path == null)
             return false;
@@ -130,11 +130,11 @@ public class Compare {
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isBlock(String name, Block block) {
-        // Get the ResourceLocation of the block from the registry
-        ResourceLocation resourceLocation = BuiltInRegistries.BLOCK.getKey(block);
+        // Get the Identifier of the block from the registry
+        Identifier Identifier = BuiltInRegistries.BLOCK.getKey(block);
 
         // Convert to a string (e.g., "minecraft:dirt")
-        String id = resourceLocation != null ? resourceLocation.toString() : "unknown:block";
+        String id = Identifier != null ? Identifier.toString() : "unknown:block";
 
         return id.equalsIgnoreCase(name);
     }
@@ -148,8 +148,8 @@ public class Compare {
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
     public static boolean isItem(String name, Item item) {
-        // Get the ResourceLocation of the block from the registry
-        ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(item);
+        // Get the Identifier of the block from the registry
+        Identifier resourceLocation = BuiltInRegistries.ITEM.getKey(item);
 
         // Convert to a string (e.g., "minecraft:dirt")
         String id = resourceLocation != null ? resourceLocation.toString() : "unknown:item";

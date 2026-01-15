@@ -3,7 +3,7 @@ package xyz.faewulf.lib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -27,8 +27,8 @@ public class Fabric implements ModInitializer {
             }
 
             @Override
-            public ResourceLocation getFabricId() {
-                return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "reload_listener");
+            public Identifier getFabricId() {
+                return Identifier.fromNamespaceAndPath(Constants.MOD_ID, "reload_listener");
             }
         });
     }

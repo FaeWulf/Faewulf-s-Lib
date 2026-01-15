@@ -14,7 +14,7 @@ import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.faewulf.lib.util.config.Config;
@@ -27,7 +27,7 @@ public class ConfigScreen extends Screen {
     private final String MOD_ID;
 
     //Textures
-    private final ResourceLocation ATLAS_TEXTURE;
+    private final Identifier ATLAS_TEXTURE;
 
     //background
     private final int ATLAS_SIZE = 32 * 3; // number of atlas tile
@@ -92,7 +92,7 @@ public class ConfigScreen extends Screen {
         this.tileMap = new int[tilesX][tilesY];
 
         this.MOD_ID = MOD_ID;
-        ATLAS_TEXTURE = ResourceLocation.tryBuild(MOD_ID, "textures/gui/atlas_background.png");
+        ATLAS_TEXTURE = Identifier.tryBuild(MOD_ID, "textures/gui/atlas_background.png");
     }
 
     public static Screen getScreen(Screen parent, String MOD_ID) {

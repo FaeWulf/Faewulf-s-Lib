@@ -2,13 +2,13 @@ package xyz.faewulf.lib.util.config.infoScreen;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.joml.Matrix3x2fStack;
 import xyz.faewulf.lib.Constants;
 
 public class rainITem {
     public static final int itemSize = 9;
-    private static final ResourceLocation RAIN_ITEM = ResourceLocation.tryBuild(Constants.MOD_ID, "textures/gui/rain_item.png");
+    private static final Identifier RAIN_ITEM = Identifier.tryBuild(Constants.MOD_ID, "textures/gui/rain_item.png");
     private final int texture;  // Texture for the falling entity
     private final float velocityX;  // Falling speed
     private final float velocityY;  // Falling speed

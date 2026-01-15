@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.Compare;
@@ -33,7 +33,7 @@ public class ItemTagRegistry {
 
         try {
             // Get all JSON files in the directory `assets/<namespace>/client_backpack/item/`
-            //ResourceLocation baseLocation = ResourceLocation.tryBuild(Constants.MOD_ID, BASE_PATH);
+            //Identifier baseLocation = Identifier.tryBuild(Constants.MOD_ID, BASE_PATH);
             for (String basePath : BASE_PATHS) {
                 Minecraft.getInstance().getResourceManager().listResources(basePath, path -> path.toString().endsWith(".json")).forEach((location, resource) -> {
                     try {
@@ -84,7 +84,7 @@ public class ItemTagRegistry {
                         });
             } else {
                 // Otherwise, it's an item ID
-                ResourceLocation itemResource = ResourceLocation.tryParse(itemString);
+                Identifier itemResource = Identifier.tryParse(itemString);
 
                 // Add to the list
                 if (itemResource != null)

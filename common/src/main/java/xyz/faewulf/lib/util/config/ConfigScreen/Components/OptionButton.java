@@ -47,9 +47,11 @@ public class OptionButton extends Button {
     }
 
     @Override
-    protected void renderWidget(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        super.renderWidget(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+    protected void renderContents(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        //Render button sprite
+        this.renderDefaultSprite(pGuiGraphics);
 
+        // Handle hover event
         if (isMouseOver(pMouseX, pMouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
 
             ConfigScreen.infoTab_Title.setMessage(Component.literal(this.entryInfo.humanizeName).withStyle(ChatFormatting.BOLD));
@@ -63,10 +65,12 @@ public class OptionButton extends Button {
             ConfigScreen.infoTab.arrangeElements();
             ConfigScreen.currentInfo = this.entryInfo.name;
         }
+
+        // Render text
+        renderString(pGuiGraphics);
     }
 
-    @Override
-    public void renderString(@NotNull GuiGraphics graphics, @NotNull Font textRenderer, int color) {
+    public void renderString(@NotNull GuiGraphics graphics) {
         Font font = Minecraft.getInstance().font;
 
         String leftValue = getMessage().getString();
@@ -93,8 +97,8 @@ public class OptionButton extends Button {
 
         // Calculate text positions for left and right values
         int leftTextX = this.getX() + 4;  // Left-aligned, 4 pixels from the left edge
-        int rightTextX = this.getX() + this.width - textRenderer.width(rightValue) - 4;  // Right-aligned, 4 pixels from the right edge
-        int textY = (int) (this.getY() + (this.height - textRenderer.lineHeight) * 1.1f / 2);  // Vertically centered for both
+        int rightTextX = this.getX() + this.width - font.width(rightValue) - 4;  // Right-aligned, 4 pixels from the right edge
+        int textY = (int) (this.getY() + (this.height - font.lineHeight) * 1.1f / 2);  // Vertically centered for both
 
         // Draw the left and right values
 

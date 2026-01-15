@@ -1,7 +1,6 @@
 package xyz.faewulf.lib.util.config.infoScreen;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -13,7 +12,8 @@ import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix3x2fStack;
@@ -29,15 +29,15 @@ public class ModInfoScreen extends Screen {
 
     private final String MOD_ID;
 
-    private final ResourceLocation MAIN_IMAGE;
-    private final ResourceLocation LIGHT_RAYS;
+    private final Identifier MAIN_IMAGE;
+    private final Identifier LIGHT_RAYS;
     private final Screen parent;
     private final Minecraft client;
 
     private final List<rainITem> fallingEntities = new ArrayList<>();
 
     //background
-    public final ResourceLocation ATLAS_TEXTURE;
+    public final Identifier ATLAS_TEXTURE;
 
     //background
     private final int ATLAS_SIZE = 32 * 3; // number of atlas tile
@@ -50,9 +50,9 @@ public class ModInfoScreen extends Screen {
     private final float logo_offset_Y = 20f;
 
     // Icon
-    private final ResourceLocation ICON_DISCORD;
-    private final ResourceLocation ICON_KOFI;
-    private final ResourceLocation ICON_GITHUB;
+    private final Identifier ICON_DISCORD;
+    private final Identifier ICON_KOFI;
+    private final Identifier ICON_GITHUB;
 
     // links
     private String URL_GITHUB = "https://github.com/FaeWulf";
@@ -78,14 +78,14 @@ public class ModInfoScreen extends Screen {
         this.tileMap = new int[tilesX][tilesY];
 
         this.MOD_ID = MOD_ID;
-        MAIN_IMAGE = ResourceLocation.tryBuild(MOD_ID, "textures/gui/d.png");
-        LIGHT_RAYS = ResourceLocation.tryBuild(MOD_ID, "textures/gui/light_rays.png");
-        ATLAS_TEXTURE = ResourceLocation.tryBuild(MOD_ID, "textures/gui/atlas_background.png");
+        MAIN_IMAGE = Identifier.tryBuild(MOD_ID, "textures/gui/d.png");
+        LIGHT_RAYS = Identifier.tryBuild(MOD_ID, "textures/gui/light_rays.png");
+        ATLAS_TEXTURE = Identifier.tryBuild(MOD_ID, "textures/gui/atlas_background.png");
 
         // Icon
-        ICON_DISCORD = ResourceLocation.tryBuild(MOD_ID, "icon/discord");
-        ICON_KOFI = ResourceLocation.tryBuild(MOD_ID, "icon/kofi");
-        ICON_GITHUB = ResourceLocation.tryBuild(MOD_ID, "icon/github");
+        ICON_DISCORD = Identifier.tryBuild(MOD_ID, "icon/discord");
+        ICON_KOFI = Identifier.tryBuild(MOD_ID, "icon/kofi");
+        ICON_GITHUB = Identifier.tryBuild(MOD_ID, "icon/github");
     }
 
     public static ModInfoScreen getScreen(Screen parent, String MOD_ID) {

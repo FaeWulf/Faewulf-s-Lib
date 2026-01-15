@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -48,7 +48,7 @@ public class EnchantHelper {
     @Nullable
     public static Holder<Enchantment> getEnchant(Level level, String namespace, String path) {
         return level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
-                .get(ResourceLocation.fromNamespaceAndPath(namespace, path))
+                .get(Identifier.fromNamespaceAndPath(namespace, path))
                 .orElse(null);
 
     }

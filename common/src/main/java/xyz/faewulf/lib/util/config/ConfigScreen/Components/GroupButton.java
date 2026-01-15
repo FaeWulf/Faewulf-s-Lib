@@ -2,6 +2,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.input.InputWithModifiers;
@@ -32,9 +33,17 @@ public class GroupButton extends Button {
     }
 
     @Override
-    protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float v) {
         int i = this.active ? 16777215 : 10526880;
-        this.renderString(guiGraphics, Minecraft.getInstance().font, i | Mth.ceil(this.alpha * 255.0F) << 24);
+
+        if(hide)
+            this.alpha = 0.6f;
+        else
+            this.alpha = 1f;
+
+        //this.renderString(guiGraphics, Minecraft.getInstance().font, i | Mth.ceil(this.alpha * 255.0F) << 24);
+        ActiveTextCollector activeTextCollector = guiGraphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE);
+        this.renderDefaultLabel(activeTextCollector);
 
         Component indicator = Component.literal("🔽").withStyle(ChatFormatting.BOLD, ChatFormatting.GREEN);
 

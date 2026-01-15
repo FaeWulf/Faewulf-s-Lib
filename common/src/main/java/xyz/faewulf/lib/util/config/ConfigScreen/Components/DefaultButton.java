@@ -15,22 +15,26 @@ public class DefaultButton extends Button {
     }
 
     @Override
-    public void renderString(GuiGraphics graphics, Font textRenderer, int color) {
+    protected void renderContents(GuiGraphics graphics, int i, int i1, float v) {
+        //Render button sprite
+        this.renderDefaultSprite(graphics);
+
         Font font = Minecraft.getInstance().font;
         Matrix3x2fStack pose = graphics.pose();
 
         float scale = 2f;  // Set the scale (2.0f means 2x size)
-        int textWidth = textRenderer.width(this.getMessage());
-        int textHeight = textRenderer.lineHeight;
+        int textWidth = font.width(this.getMessage());
+        int textHeight = font.lineHeight;
 
         // Center the text on the button
         int textX = this.getX() + 1 + (this.width - (int) (textWidth * scale)) / 2;
         int textY = this.getY() - 1 + (this.height - (int) (textHeight * scale)) / 2;
 
+        // Render text
         pose.pushMatrix();
         pose.scale(scale, scale);
         pose.translate((textX / scale), (textY / scale));
-        graphics.drawString(font, getMessage(), 0, 0, color | 0xFFFFFF, true);
+        graphics.drawString(font, getMessage(), 0, 0, -1, true);
         pose.popMatrix();
     }
 }
