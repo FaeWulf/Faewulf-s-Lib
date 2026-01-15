@@ -1,9 +1,13 @@
 package xyz.faewulf.lib.platform;
 
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.event.EventHooks;
 import xyz.faewulf.lib.platform.services.IPlatformHelper;
 
 import java.util.ArrayList;
@@ -32,6 +36,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     @Override
     public boolean isClientSide() {
         return FMLEnvironment.dist == Dist.CLIENT;
+    }
+
+    @Override
+    public int EventHook_getEnchantmentLevel(int level, ItemStack itemStack, Holder<Enchantment> enchantment) {
+        return EventHooks.getEnchantmentLevelSpecific(level, itemStack, enchantment);
     }
 
     @Override

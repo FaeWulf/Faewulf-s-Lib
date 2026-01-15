@@ -11,6 +11,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.faewulf.lib.platform.Services;
 
 public class EnchantHelper {
 
@@ -106,7 +107,9 @@ public class EnchantHelper {
         if (enchantmentHolder == null)
             return 0;
 
-        return itemEnchantmentsComponent.getLevel(enchantmentHolder);
+        int enchant_level = itemEnchantmentsComponent.getLevel(enchantmentHolder);
+        enchant_level = Services.PLATFORM.EventHook_getEnchantmentLevel(enchant_level, stack, enchantmentHolder);
+        return enchant_level;
     }
 
     /**
