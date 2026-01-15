@@ -1,5 +1,10 @@
 package xyz.faewulf.lib.platform.services;
 
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +43,10 @@ public interface IPlatformHelper {
     default String getEnvironmentName() {
 
         return isDevelopmentEnvironment() ? "development" : "production";
+    }
+
+    default int EventHook_getEnchantmentLevel(int level, ItemStack itemStack, Holder<Enchantment> enchantment) {
+        return level;
     }
 
     boolean isClientSide();
