@@ -1,3 +1,9 @@
+# [1.3.2] - 2026-1-16
+
+### Added
+
+- Config files now separate into groups for better readability.
+
 # [1.3.1] - 2025-6-30
 
 ### Added
