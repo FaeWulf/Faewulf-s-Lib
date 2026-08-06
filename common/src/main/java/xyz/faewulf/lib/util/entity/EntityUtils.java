@@ -45,7 +45,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static boolean isEntityExistAt(Level level, BlockPos blockPos, float radius) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radius, vec3.y - radius, vec3.z - radius,
@@ -68,7 +68,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static boolean isEntityExistAt(Level level, BlockPos blockPos, float radiusX, float radiusY, float radiusZ) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radiusX, vec3.y - radiusY, vec3.z - radiusZ,
@@ -89,7 +89,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static int getEntityCountAt(Level level, BlockPos blockPos, float radius) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radius, vec3.y - radius, vec3.z - radius,
@@ -112,7 +112,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static int getEntityCountAt(Level level, BlockPos blockPos, float radiusX, float radiusY, float radiusZ) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radiusX, vec3.y - radiusY, vec3.z - radiusZ,
@@ -135,7 +135,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static boolean isSpecificEntityExistAt(Level level, BlockPos blockPos, float radius, EntityType<?> entityType) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radius, vec3.y - radius, vec3.z - radius,
@@ -159,7 +159,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static boolean isSpecificEntityExistAt(Level level, BlockPos blockPos, float radiusX, float radiusY, float radiusZ, EntityType<?> entityType) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radiusX, vec3.y - radiusY, vec3.z - radiusZ,
@@ -182,7 +182,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static int getSpecificEntityCountAt(Level level, BlockPos blockPos, float radius, EntityType<?> entityType) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radius, vec3.y - radius, vec3.z - radius,
@@ -206,7 +206,7 @@ public class EntityUtils {
      * @return {@code true} if at least one entity exists within the specified radius, {@code false} otherwise.
      */
     public static int getSpecificEntityCountAt(Level level, BlockPos blockPos, float radiusX, float radiusY, float radiusZ, EntityType<?> entityType) {
-        Vec3 vec3 = blockPos.getCenter();
+        Vec3 vec3 = Vec3.atCenterOf(blockPos);
 
         AABB box = new AABB(
                 vec3.x - radiusX, vec3.y - radiusY, vec3.z - radiusZ,

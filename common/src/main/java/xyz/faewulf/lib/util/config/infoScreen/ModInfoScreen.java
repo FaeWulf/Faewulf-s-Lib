@@ -128,7 +128,7 @@ public class ModInfoScreen extends Screen {
         settingButton = rowHelper.addChild(
                 Button.builder(
                         Component.translatable(MOD_ID + ".info.configurations"),
-                        button -> this.client.setScreen(ConfigScreen.getScreen(this, MOD_ID))).build()
+                        button -> this.client.gui.setScreen(ConfigScreen.getScreen(this, MOD_ID))).build()
         );
 
         if (ConfigLoaderFromAnnotation.loadConfig(MOD_ID).isEmpty())
@@ -321,7 +321,7 @@ public class ModInfoScreen extends Screen {
     @Override
     public void onClose() {
         if (this.client != null)
-            this.client.setScreen(this.parent);
+            this.client.gui.setScreen(this.parent);
         else
             super.onClose();
     }
@@ -377,14 +377,14 @@ public class ModInfoScreen extends Screen {
     }
 
     private void openWebLink(String url) {
-        this.client.setScreen(new ConfirmLinkScreen(
+        this.client.gui.setScreen(new ConfirmLinkScreen(
                 confirmed -> {
                     if (confirmed) {
                         // Open the URL if the player confirms
                         Util.getPlatform().openUri(url);
                     }
                     // Return to the previous screen if canceled
-                    this.client.setScreen(this);
+                    this.client.gui.setScreen(this);
                 },
                 url,  // URL to open
                 true  // Show the "Copy to Clipboard" button

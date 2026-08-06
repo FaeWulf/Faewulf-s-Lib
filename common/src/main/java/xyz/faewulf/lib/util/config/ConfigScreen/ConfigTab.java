@@ -3,9 +3,12 @@ package xyz.faewulf.lib.util.config.ConfigScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.tabs.Tab;
+import net.minecraft.client.gui.layouts.Layout;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import xyz.faewulf.lib.Constants;
 import xyz.faewulf.lib.util.config.ConfigLoaderFromAnnotation;
 import xyz.faewulf.lib.util.config.ConfigScreen.Components.*;
@@ -22,6 +25,8 @@ public class ConfigTab implements Tab {
 
     public Map<ConfigLoaderFromAnnotation.EntryInfo, List<AbstractWidget>> tabEntries = new LinkedHashMap<>();
     private String MOD_ID;
+
+    protected final LinearLayout layout = LinearLayout.vertical();
 
     Component Title;
 
@@ -150,6 +155,11 @@ public class ConfigTab implements Tab {
     @Override
     public void doLayout(@NotNull ScreenRectangle screenRectangle) {
 
+    }
+
+    @Override
+    public @NonNull Layout getLayout() {
+        return this.layout;
     }
 }
 

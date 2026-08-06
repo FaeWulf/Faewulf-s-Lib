@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.*;
+import net.minecraft.client.gui.components.tabs.MenuTabBar;
 import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.components.tabs.TabManager;
 import net.minecraft.client.gui.components.tabs.TabNavigationBar;
@@ -111,7 +112,7 @@ public class ConfigScreen extends Screen {
         Map<String, Map<String, ConfigLoaderFromAnnotation.EntryInfo>> configMap = ConfigLoaderFromAnnotation.loadConfig(MOD_ID);
 
         //top tab bar
-        TabNavigationBar.Builder tabBuilder = TabNavigationBar.builder(this.tabManager, this.width);
+        MenuTabBar.Builder tabBuilder = MenuTabBar.builder(this.tabManager, this.width);
 
         configMap.forEach((s, stringEntryTypeMap) -> { //create tab for each category
             ConfigTab configTab = new ConfigTab(MOD_ID, s, stringEntryTypeMap);
@@ -241,9 +242,9 @@ public class ConfigScreen extends Screen {
 
         //other comp
         if (this.tabNavigationBar != null && this.rightTab != null && this.slw != null) {
-            this.tabNavigationBar.updateWidth(this.width);
+            this.tabNavigationBar.arrangeElements(this.width);
             //arrange each main comp
-            this.tabNavigationBar.arrangeElements();
+            //this.tabNavigationBar.arrangeElements();
             this.rightTab.arrangeElements();
             infoTab.arrangeElements();
 
@@ -389,7 +390,7 @@ public class ConfigScreen extends Screen {
     @Override
     public void onClose() {
         if (this.client != null)
-            this.client.setScreen(this.parent);
+            this.client.gui.setScreen(this.parent);
         else
             super.onClose();
     }

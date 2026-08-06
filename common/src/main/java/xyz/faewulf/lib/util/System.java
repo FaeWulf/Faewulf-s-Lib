@@ -1,5 +1,6 @@
 package xyz.faewulf.lib.util;
 
+import net.minecraft.SharedConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,7 @@ public class System {
 
         if (Minecraft.getInstance() != null)
             SystemToast.add(
-                    Minecraft.getInstance().getToastManager(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+                    Minecraft.getInstance().gui.toastManager(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
                     title, message
             );
 
