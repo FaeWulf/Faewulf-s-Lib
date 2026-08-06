@@ -54,7 +54,7 @@ public class NumberButtonInfo extends StringWidget {
 
         if (isMouseOver(mouseX, mouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
 
-            ConfigScreen.infoTab_Title.setMessage(Component.literal(this.entryInfo.humanizeName).withStyle(ChatFormatting.BOLD));
+            ConfigScreen.infoTab_Title.setMessage(Component.translatable(MOD_ID + ".config." + this.entryInfo.name + ".name").withStyle(ChatFormatting.BOLD));
 
             MutableComponent info = Component.translatable(MOD_ID + ".config." + this.entryInfo.name + ".tooltip");
 
@@ -74,7 +74,7 @@ public class NumberButtonInfo extends StringWidget {
         try {
             value = this.entryInfo.targetField.get(null);
         } catch (IllegalAccessException e) {
-            Constants.LOG.error("[backpack] Something went wrong with the Option button...");
+            Constants.LOG.error("Something went wrong with the NumberButtonInfo component...");
             e.printStackTrace();
             return false;
         }

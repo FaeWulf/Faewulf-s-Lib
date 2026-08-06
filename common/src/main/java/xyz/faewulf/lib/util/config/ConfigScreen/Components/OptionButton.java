@@ -51,7 +51,7 @@ public class OptionButton extends Button {
 
         if (isMouseOver(pMouseX, pMouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
 
-            ConfigScreen.infoTab_Title.setMessage(Component.literal(this.entryInfo.humanizeName).withStyle(ChatFormatting.BOLD));
+            ConfigScreen.infoTab_Title.setMessage(Component.translatable(MOD_ID + ".config." + this.entryInfo.name + ".name").withStyle(ChatFormatting.BOLD));
 
             MutableComponent info = Component.translatable(MOD_ID + ".config." + this.entryInfo.name + ".tooltip");
 

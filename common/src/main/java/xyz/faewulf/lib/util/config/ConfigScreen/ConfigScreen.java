@@ -67,6 +67,8 @@ public class ConfigScreen extends Screen {
     public static GridLayout infoTab;
     public static String currentInfo;
     public static boolean updateCall = false;
+    public static MultiLineTextWidget infoTab_Title;
+    public static MultiLineTextWidget infoTab_Info;
 
     //part components
     @Nullable
@@ -78,9 +80,6 @@ public class ConfigScreen extends Screen {
     private Button ButtonUndo;
     @Nullable
     private Button ButtonDone_Save;
-
-    public static MultiLineTextWidget infoTab_Title;
-    public static MultiLineTextWidget infoTab_Info;
 
     protected ConfigScreen(Screen parent, String MOD_ID) {
         super(Component.translatable(MOD_ID + ".config." + "title"));
