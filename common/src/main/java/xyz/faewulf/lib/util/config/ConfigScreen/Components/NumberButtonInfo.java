@@ -3,7 +3,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -38,7 +38,7 @@ public class NumberButtonInfo extends StringWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void extractWidgetRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
         Font font = Minecraft.getInstance().font;
         // Change info text if value is changing
         String scrollingText = trimTextWithEllipsis(initMessage.getString(), this.width, font);
@@ -66,7 +66,7 @@ public class NumberButtonInfo extends StringWidget {
             ConfigScreen.currentInfo = this.entryInfo.name;
         }
 
-        super.renderWidget(guiGraphics, mouseX, mouseY, partialTick);
+        super.extractWidgetRenderState(guiGraphics, mouseX, mouseY, partialTick);
     }
 
     private boolean isChanging() {

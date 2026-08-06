@@ -1,6 +1,6 @@
 package xyz.faewulf.lib.util.config.infoScreen;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import org.joml.Matrix3x2fStack;
@@ -64,7 +64,7 @@ public class rainITem {
 
     }
 
-    public void render(GuiGraphics guiGraphics, float delta) {
+    public void render(GuiGraphicsExtractor guiGraphics, float delta) {
 
         // Apply transformations
         Matrix3x2fStack poseStack = guiGraphics.pose();

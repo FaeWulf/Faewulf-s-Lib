@@ -2,7 +2,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.network.chat.Component;
@@ -51,7 +51,7 @@ public class NumberButton extends EditBox {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void extractWidgetRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
 
         // Set init value to edit box
         // Some how do this rather than in init<> will shows the text, in init<> it won't show value text until you click on it
@@ -82,7 +82,7 @@ public class NumberButton extends EditBox {
             ConfigScreen.currentInfo = this.entryInfo.name;
         }
 
-        super.renderWidget(guiGraphics, mouseX, mouseY, partialTick);
+        super.extractWidgetRenderState(guiGraphics, mouseX, mouseY, partialTick);
     }
 
     private void onTextChange(String filter) {

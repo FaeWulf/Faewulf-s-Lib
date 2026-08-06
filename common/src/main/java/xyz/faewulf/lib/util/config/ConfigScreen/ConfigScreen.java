@@ -2,7 +2,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.components.tabs.TabManager;
@@ -241,7 +241,7 @@ public class ConfigScreen extends Screen {
 
         //other comp
         if (this.tabNavigationBar != null && this.rightTab != null && this.slw != null) {
-            this.tabNavigationBar.setWidth(this.width);
+            this.tabNavigationBar.updateWidth(this.width);
             //arrange each main comp
             this.tabNavigationBar.arrangeElements();
             this.rightTab.arrangeElements();
@@ -395,7 +395,7 @@ public class ConfigScreen extends Screen {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int $$1, int $$2, float $$3) {
+    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int $$1, int $$2, float $$3) {
         //this.renderBackground(guiGraphics, $$1, $$2, $$3);
 
         //drawRandomTiledBackground(guiGraphics);
@@ -408,10 +408,10 @@ public class ConfigScreen extends Screen {
                 0xbb000000, 0xbb000000
         );
 
-        super.render(guiGraphics, $$1, $$2, $$3);
+        super.extractRenderState(guiGraphics, $$1, $$2, $$3);
     }
 
-    private void drawRandomTiledBackground(GuiGraphics guiGraphics) {
+    private void drawRandomTiledBackground(GuiGraphicsExtractor guiGraphics) {
         int tilesPerRow = ATLAS_SIZE / TILE_SIZE;  // Number of tiles per row in the atlas
 
         for (int y = 0; y < tilesY; y++) {

@@ -2,7 +2,7 @@ package xyz.faewulf.lib.util.config.infoScreen;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.SpriteIconButton;
 import net.minecraft.client.gui.components.Tooltip;
@@ -209,13 +209,13 @@ public class ModInfoScreen extends Screen {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
         // Render other screen elements (if any)
-        super.render(guiGraphics, mouseX, mouseY, delta);
+        super.extractRenderState(guiGraphics, mouseX, mouseY, delta);
     }
 
     @Override
-    public void renderBackground(@NotNull GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    public void extractBackground(@NotNull GuiGraphicsExtractor guiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         drawRandomTiledBackground(guiGraphics);
 
         randomShtShowering(guiGraphics, pPartialTick);
@@ -238,7 +238,7 @@ public class ModInfoScreen extends Screen {
         drawWobblingImage(guiGraphics);
     }
 
-    private void drawLightRays(GuiGraphics guiGraphics) {
+    private void drawLightRays(GuiGraphicsExtractor guiGraphics) {
         int centerX = this.width / 2;
         int centerY = (int) ((this.layout.getHeaderHeight() + logo_offset_Y) / 2);
         int size = 128;  // Size of the light ray texture
@@ -274,7 +274,7 @@ public class ModInfoScreen extends Screen {
         matrixStack.popMatrix();
     }
 
-    private void drawWobblingImage(GuiGraphics guiGraphics) {
+    private void drawWobblingImage(GuiGraphicsExtractor guiGraphics) {
         int imageSize = 64;  // Size of the image
         int centerX = this.width / 2;
         int centerY = (int) ((this.layout.getHeaderHeight() + logo_offset_Y) / 2);
@@ -326,7 +326,7 @@ public class ModInfoScreen extends Screen {
             super.onClose();
     }
 
-    private void randomShtShowering(GuiGraphics guiGraphics, float delta) {
+    private void randomShtShowering(GuiGraphicsExtractor guiGraphics, float delta) {
         //guiGraphics.renderTooltip(this.font, Component.literal("Tsting the new system"), 50, 50);
         // Update and render each falling entity
         for (rainITem entity : fallingEntities) {
@@ -335,7 +335,7 @@ public class ModInfoScreen extends Screen {
         }
     }
 
-    private void drawRandomTiledBackground(GuiGraphics guiGraphics) {
+    private void drawRandomTiledBackground(GuiGraphicsExtractor guiGraphics) {
         int tilesPerRow = ATLAS_SIZE / TILE_SIZE;  // Number of tiles per row in the atlas
 
         for (int y = 0; y < tilesY; y++) {

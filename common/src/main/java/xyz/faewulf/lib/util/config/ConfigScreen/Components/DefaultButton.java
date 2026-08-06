@@ -2,7 +2,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -15,9 +15,9 @@ public class DefaultButton extends Button {
     }
 
     @Override
-    protected void renderContents(GuiGraphics graphics, int i, int i1, float v) {
+    protected void extractContents(GuiGraphicsExtractor graphics, int i, int i1, float v) {
         //Render button sprite
-        this.renderDefaultSprite(graphics);
+        this.extractDefaultSprite(graphics);
 
         Font font = Minecraft.getInstance().font;
         Matrix3x2fStack pose = graphics.pose();
@@ -34,7 +34,7 @@ public class DefaultButton extends Button {
         pose.pushMatrix();
         pose.scale(scale, scale);
         pose.translate((textX / scale), (textY / scale));
-        graphics.drawString(font, getMessage(), 0, 0, -1, true);
+        graphics.text(font, getMessage(), 0, 0, -1, true);
         pose.popMatrix();
     }
 }

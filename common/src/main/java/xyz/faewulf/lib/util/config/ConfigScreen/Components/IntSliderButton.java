@@ -1,7 +1,7 @@
 package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -78,7 +78,7 @@ public class IntSliderButton extends AbstractSliderButton {
     }
 
     @Override
-    public void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public void extractWidgetRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
 
         // Update the value (dynamic change from reset to default button)
         double newValue = normalizeValue(this.entryInfo);
@@ -103,6 +103,6 @@ public class IntSliderButton extends AbstractSliderButton {
             ConfigScreen.currentInfo = this.entryInfo.name;
         }
 
-        super.renderWidget(guiGraphics, mouseX, mouseY, partialTick);
+        super.extractWidgetRenderState(guiGraphics, mouseX, mouseY, partialTick);
     }
 }

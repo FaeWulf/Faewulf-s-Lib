@@ -3,7 +3,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ActiveTextCollector;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.network.chat.Component;
@@ -33,7 +33,7 @@ public class GroupButton extends Button {
     }
 
     @Override
-    protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float v) {
+    protected void extractContents(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float v) {
         int i = this.active ? 16777215 : 10526880;
 
         if(hide)
@@ -42,8 +42,8 @@ public class GroupButton extends Button {
             this.alpha = 1f;
 
         //this.renderString(guiGraphics, Minecraft.getInstance().font, i | Mth.ceil(this.alpha * 255.0F) << 24);
-        ActiveTextCollector activeTextCollector = guiGraphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE);
-        this.renderDefaultLabel(activeTextCollector);
+        ActiveTextCollector activeTextCollector = guiGraphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE);
+        this.extractDefaultLabel(activeTextCollector);
 
         Component indicator = Component.literal("🔽").withStyle(ChatFormatting.BOLD, ChatFormatting.GREEN);
 
@@ -53,7 +53,7 @@ public class GroupButton extends Button {
         int leftTextX = this.getX() + 4;  // Left-aligned, 4 pixels from the left edge
         int textY = (int) (this.getY() + (this.height - Minecraft.getInstance().font.lineHeight) * 1.1f / 2);  // Vertically centered for text
 
-        guiGraphics.drawString(Minecraft.getInstance().font, indicator, leftTextX, textY, ARGB.white(this.alpha));  // Left value
+        guiGraphics.text(Minecraft.getInstance().font, indicator, leftTextX, textY, ARGB.white(this.alpha));  // Left value
     }
 
     @Override

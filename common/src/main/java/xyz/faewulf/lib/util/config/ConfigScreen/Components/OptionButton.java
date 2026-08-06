@@ -3,7 +3,7 @@ package xyz.faewulf.lib.util.config.ConfigScreen.Components;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -47,9 +47,9 @@ public class OptionButton extends Button {
     }
 
     @Override
-    protected void renderContents(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    protected void extractContents(@NotNull GuiGraphicsExtractor pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         //Render button sprite
-        this.renderDefaultSprite(pGuiGraphics);
+        this.extractDefaultSprite(pGuiGraphics);
 
         // Handle hover event
         if (isMouseOver(pMouseX, pMouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
@@ -70,7 +70,7 @@ public class OptionButton extends Button {
         renderString(pGuiGraphics);
     }
 
-    public void renderString(@NotNull GuiGraphics graphics) {
+    public void renderString(@NotNull GuiGraphicsExtractor graphics) {
         Font font = Minecraft.getInstance().font;
 
         String leftValue = getMessage().getString();
@@ -102,7 +102,7 @@ public class OptionButton extends Button {
 
         // Draw the left and right values
 
-        graphics.drawString(font, component, rightTextX, textY, ARGB.white(this.alpha));  // Right value
+        graphics.text(font, component, rightTextX, textY, ARGB.white(this.alpha));  // Right value
 
         String displayedLeftValue = trimTextWithEllipsis(leftValue, (int) ((this.width - 4) * 0.7), font);
 
@@ -110,7 +110,7 @@ public class OptionButton extends Button {
         if (isChanging())
             leftTextComp = Component.literal(displayedLeftValue).withStyle(ChatFormatting.ITALIC, ChatFormatting.YELLOW);
 
-        graphics.drawString(font, leftTextComp, leftTextX, textY, ARGB.white(this.alpha));  // Left value
+        graphics.text(font, leftTextComp, leftTextX, textY, ARGB.white(this.alpha));  // Left value
     }
 
     private boolean isChanging() {

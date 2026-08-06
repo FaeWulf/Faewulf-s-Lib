@@ -1,7 +1,7 @@
 package xyz.faewulf.lib.util.config.ConfigScreen;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -103,7 +103,7 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
 
         @Override
 //      public void render(GuiGraphics context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        public void renderContent(GuiGraphics context, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void extractContent(GuiGraphicsExtractor context, int mouseX, int mouseY, boolean hovered, float tickDelta) {
 
             int x = this.getContentX(),
                     y = this.getContentY(),
@@ -127,7 +127,7 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
                     abstractWidget.setY(y);
                 }
 
-                abstractWidget.render(context, mouseX, mouseY, tickDelta);
+                abstractWidget.extractRenderState(context, mouseX, mouseY, tickDelta);
             }
 
             // Basically, when elements only contain GroupButton, the for loop above simple skip the loop
@@ -139,7 +139,7 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
                     groupButton.setHeight(20);
                     groupButton.setX(x);
                     groupButton.setY(y);
-                    groupButton.render(context, mouseX, mouseY, tickDelta);
+                    groupButton.extractRenderState(context, mouseX, mouseY, tickDelta);
                 }
                 return;
             }
@@ -148,7 +148,7 @@ public class ScrollableListWidget extends ContainerObjectSelectionList<Scrollabl
             this.defaultButton.setWidth(20);
             this.defaultButton.setX(x + entryWidth - DEFAULT_BUTTON_SIZE - 2 - SCROLLBAR_OFFSET / 2);
             this.defaultButton.setY(y);
-            this.defaultButton.render(context, mouseX, mouseY, tickDelta);
+            this.defaultButton.extractRenderState(context, mouseX, mouseY, tickDelta);
 
             //check value
             Object value;
