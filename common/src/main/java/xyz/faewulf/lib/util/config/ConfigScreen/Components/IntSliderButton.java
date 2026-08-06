@@ -91,7 +91,7 @@ public class IntSliderButton extends AbstractSliderButton {
         // Handle for showing infos in right tab
         if (isMouseOver(mouseX, mouseY) && !Objects.equals(this.entryInfo.name, ConfigScreen.currentInfo)) {
 
-            ConfigScreen.infoTab_Title.setMessage(Component.literal(this.entryInfo.humanizeName).withStyle(ChatFormatting.BOLD));
+            ConfigScreen.infoTab_Title.setMessage(Component.translatable(this.entryInfo.name).withStyle(ChatFormatting.BOLD));
 
             MutableComponent info = Component.translatable(MOD_ID + ".config." + this.entryInfo.name + ".tooltip");
 

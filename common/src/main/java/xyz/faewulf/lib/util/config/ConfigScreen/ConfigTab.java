@@ -33,7 +33,7 @@ public class ConfigTab implements Tab {
         ConfigLoaderFromAnnotation.getGroups(MOD_ID, title).forEach(group -> {
 
             // Add GroupButton to the tab's Widget List
-            GroupButton groupButton = new GroupButton(Component.literal(group));
+            GroupButton groupButton = new GroupButton(Component.translatable(MOD_ID + ".config.category.group." + group + ".name"));
 
             tabEntries.put(new ConfigLoaderFromAnnotation.EntryInfo(group), new ArrayList<>() {{
                 add(groupButton);
@@ -76,7 +76,7 @@ public class ConfigTab implements Tab {
                                 new OptionButton(
                                         MOD_ID,
                                         20, 20, 20, 20,
-                                        Component.literal(s1),
+                                        Component.translatable(MOD_ID + ".config." + entryInfo.name + ".name"),
                                         button -> {
                                             //System.out.println("Button " + s1 + ": " + entryInfo.info + ", " + entryInfo.value + ", " + entryInfo.require_restart);
 
@@ -95,7 +95,7 @@ public class ConfigTab implements Tab {
                                                 }
 
                                             } catch (IllegalAccessException e) {
-                                                Constants.LOG.error("[backpack] Something went wrong with the config system...");
+                                                Constants.LOG.error("Something went wrong with the config system ConfigTab...");
                                                 e.printStackTrace();
                                             }
 
