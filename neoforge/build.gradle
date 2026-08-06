@@ -3,15 +3,6 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
-repositories {
-    maven {
-        url = "https://api.modrinth.com/maven"
-    }
-    maven {
-        url = "https://jm.gserv.me/repository/maven-public/"
-    }
-}
-
 dependencies {
     //lib
     implementation("com.electronwill.night-config:toml:3.6.0")
@@ -24,7 +15,6 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -55,8 +45,6 @@ neoForge {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-tasks.withType(Javadoc).configureEach { enabled = false }
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)

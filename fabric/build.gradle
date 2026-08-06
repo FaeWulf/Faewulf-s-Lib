@@ -2,25 +2,10 @@ plugins {
     id 'multiloader-loader'
     id 'net.fabricmc.fabric-loom'
 }
-
-repositories {
-    maven {
-        url = "https://api.modrinth.com/maven"
-    }
-    maven {
-        name = "Terraformers"
-        url = "https://maven.terraformersmc.com/"
-    }
-    maven {
-        url = "https://jm.gserv.me/repository/maven-public/"
-    }
-}
-
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-
-    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+    implementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    implementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
     implementation("com.terraformersmc:modmenu:${mod_menu_version}")
 
@@ -30,12 +15,10 @@ dependencies {
 }
 
 loom {
-    def aw = project(':common').file("src/main/resources/${mod_id}.classtweaker")
+    def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
-        //accessWidenerPath = file("src/main/resources/${mod_id}.classtweaker")
     }
-
     runs {
         client {
             client()
@@ -52,8 +35,6 @@ loom {
     }
 }
 
-tasks.withType(Javadoc).configureEach { enabled = false }
-
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
@@ -63,7 +44,6 @@ def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', Strin
         }
     }
 }
-
 sourceSets.configureEach {
     [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
         configurations.named(variant) {

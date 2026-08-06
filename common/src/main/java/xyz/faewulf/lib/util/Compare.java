@@ -19,7 +19,7 @@ public class Compare {
      * Checks if the given {@link Block} has the specified tag.
      *
      * @param block   The {@link Block} to check.
-     * @param tagName The name of the tag to look for.</br>
+     * @param tagName The name of the tag to look for.
      *                Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
@@ -52,7 +52,7 @@ public class Compare {
      * Checks if the given {@link Entity} has the specified tag.
      *
      * @param entity  The {@link Entity} to check.
-     * @param tagName The name of the tag to look for.</br>
+     * @param tagName The name of the tag to look for.
      *                Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
@@ -69,7 +69,7 @@ public class Compare {
      * Checks if the given {@link Item} has the specified tag.
      *
      * @param item    The {@link Item} to check.
-     * @param tagName The name of the tag to look for.</br>
+     * @param tagName The name of the tag to look for.
      *                Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
@@ -108,7 +108,7 @@ public class Compare {
      *
      * @param item    The item to check.
      * @param tagName The name of the tag to look for.
-     *                Format should be: {@code path:tag}".</br>
+     *                Format should be: {@code path:tag}".
      *                Example: {@code backpack/item:glow}
      * @return {@code true} if the item has the specified tag, {@code false} otherwise.
      */
@@ -125,7 +125,7 @@ public class Compare {
      * Checks the given {@link Block}'s name.
      *
      * @param name  The name of the block to compare with.
-     * @param block The {@link Block} to check.</br>
+     * @param block The {@link Block} to check.
      *              Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */
@@ -143,7 +143,7 @@ public class Compare {
      * Checks the given {@link Item}'s name.
      *
      * @param name The name of the block to compare with.
-     * @param item The {@link Item} to check.</br>
+     * @param item The {@link Item} to check.
      *             Format {@code namespace:item_id}
      * @return {@code true} if the item has the tag, {@code false} otherwise.
      */

@@ -1,50 +1,50 @@
 {
-  "schemaVersion": 1,
-  "id": "${mod_id}",
-  "version": "${version}",
-  "name": "${mod_name}",
-  "description": "${description}",
-  "authors": [
-    "${mod_author}"
-  ],
-  "contact": {
-    "homepage": "https://faewulf.xyz",
-    "sources": "https://github.com/FaeWulf/Faewulf-s-Lib",
-    "issues": "https://github.com/FaeWulf/Faewulf-s-Lib/issues"
-  },
-  "license": "${license}",
-  "icon": "${mod_id}.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "xyz.faewulf.lib.Fabric"
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
     ],
-    "client": [
-      "xyz.faewulf.lib.FabricClient"
+    "contact": {
+        "homepage": "https://faewulf.xyz",
+        "sources": "https://github.com/FaeWulf/Faewulf-s-Lib",
+        "issues": "https://github.com/FaeWulf/Faewulf-s-Lib/issues"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "xyz.faewulf.lib.Fabric"
+        ],
+        "client": [
+            "xyz.faewulf.lib.FabricClient"
+        ],
+        "modmenu": [
+            "xyz.faewulf.lib.config.ModMenuIntegration"
+        ]
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://faewulf.xyz/discord"
+            },
+            "update_checker": true
+        }
+    },
+    "mixins": [
+        "${mod_id}.client.mixins.json",
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
     ],
-    "modmenu": [
-      "xyz.faewulf.lib.config.ModMenuIntegration"
-    ]
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://faewulf.xyz/discord"
-      },
-      "update_checker": true
+    "accessWidener": "${mod_id}.classtweaker",
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": ">=${fabric_version}",
+        "minecraft": ">=${minecraft_version} <=${minecraft_version_max}",
+        "java": ">=${java_version}"
     }
-  },
-  "mixins": [
-    "${mod_id}.client.mixins.json",
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
-  ],
-  "accessWidener": "${mod_id}.classtweaker",
-  "depends": {
-    "fabricloader": ">=${fabric_loader_version}",
-    "fabric-api": ">=${fabric_version}",
-    "minecraft": ">=${minecraft_version} <=${minecraft_version_max}",
-    "java": ">=${java_version}"
-  }
 }
   

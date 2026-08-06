@@ -1,10 +1,14 @@
 {
   "required": true,
+  "minVersion": "0.8",
   "package": "xyz.faewulf.lib.mixinClient",
-  "compatibilityLevel": "JAVA_18",
+  "compatibilityLevel": "JAVA_25",
   "injectors": {
     "defaultRequire": 1
   },
   "client": ["ClientLevelMixin"],
+  "overwrites": {
+    "requireAnnotations": true
+  },
   "plugin": "xyz.faewulf.lib.util.mixinPlugin.ConditionalMixinPlugin"
 }

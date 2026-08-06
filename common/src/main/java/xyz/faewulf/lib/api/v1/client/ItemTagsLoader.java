@@ -9,13 +9,13 @@ public class ItemTagsLoader {
     /**
      * Registers a new resource location path for retrieving all tag JSON data.
      * <p>
-     * This method register its path to the {@code ItemTagRegistry} for custom client tags.</br>
+     * This method register its path to the {@code ItemTagRegistry} for custom client tags.
      * </p>
      * <p>
      * <b>Warn</b>: The same path loaded via multiple resource pack will be combine instead of replace.
      * </p>
      *
-     * <h3>Example Json tag file:</h3>
+     * Example Json tag file:
      * - Register for {@code backpack/item}
      * <pre>{@code
      * path: assets/client_backpack/backpack/item/example.json
